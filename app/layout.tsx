@@ -34,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${futura.className} overflow-hidden bg-stone-50`}>
+      <body
+        className={`${futura.className} overflow-hidden bg-stone-50 text-neutral-700`}
+      >
         {children}
       </body>
     </html>

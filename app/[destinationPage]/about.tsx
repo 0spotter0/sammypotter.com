@@ -27,16 +27,18 @@ export const About = () => {
   ]
 
   return (
-    <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-20'>
-      <div className='flex w-full gap-8 pt-20'>
-        <div className='w-1/3 shrink-0'>
+    <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-20 pt-5'>
+      <div className='flex w-full flex-col items-center gap-8 sm:flex-row'>
+        <div className='shrink-0 sm:w-1/3'>
           <Image
             src='/sammy.png'
             width={200}
             height={200}
             alt='headshot image'
           />
-          <p className='pt-1 text-xs'>special thanks to Cengiz Ozel</p>
+          <p className='pt-1 text-xs text-neutral-500'>
+            special thanks to Cengiz Ozel
+          </p>
         </div>
         <div className='flex w-full flex-col gap-4'>
           <div className='flex items-center gap-2'>
@@ -48,11 +50,12 @@ export const About = () => {
             evangelist, intermediate Spanish speaker.
           </p>
           <p>University of Rochester class of 2025, BS Computer Science.</p>
-          <div className='flex gap-4 text-3xl'>
+          <div className='flex justify-center gap-4 pt-2 text-3xl sm:justify-start sm:pt-0'>
             <Link
               href='https://github.com/0spotter0'
               rel='noopener noreferrer'
               target='_blank'
+              className='transition-transform duration-150 hover:scale-105'
             >
               <IoLogoGithub />
             </Link>
@@ -60,6 +63,7 @@ export const About = () => {
               href='https://scholar.google.com/citations?user=G8Cp2AMAAAAJ'
               rel='noopener noreferrer'
               target='_blank'
+              className='transition-transform duration-150 hover:scale-105'
             >
               <IoBook />
             </Link>
@@ -67,6 +71,7 @@ export const About = () => {
               href='https://www.linkedin.com/in/pottersammy/'
               rel='noopener noreferrer'
               target='_blank'
+              className='transition-transform duration-150 hover:scale-105'
             >
               <IoLogoLinkedin />
             </Link>
@@ -80,7 +85,7 @@ export const About = () => {
         </p>
         <div className='flex flex-wrap gap-2'>
           {skills.map((skill) => (
-            <SkillPill name={skill} />
+            <SkillPill key={skill} name={skill} />
           ))}
         </div>
       </div>

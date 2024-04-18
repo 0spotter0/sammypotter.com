@@ -29,9 +29,9 @@ export default async function Main(props: MainProps) {
   }
 
   return (
-    <div className='w-svh h-svh bg-stone-50 text-neutral-700'>
+    <div className='w-svh h-svh'>
       <Header currentPage={props.params.destinationPage} />
-      <div className='h-full w-full overflow-hidden overflow-y-auto px-20 py-10'>
+      <div className='h-full w-full overflow-hidden overflow-y-auto px-5 pb-32 sm:px-20 sm:py-10'>
         {getPageComponent(props.params.destinationPage)}
       </div>
     </div>
