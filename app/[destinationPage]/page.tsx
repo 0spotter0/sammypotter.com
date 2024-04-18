@@ -1,0 +1,39 @@
+'use server'
+
+import { Header } from '../header'
+import { About } from './about'
+import { Blog } from './blog'
+import { Research } from './research'
+import { Resume } from './resume'
+
+type MainProps = {
+  params: {
+    destinationPage: string
+  }
+}
+
+export default async function Main(props: MainProps) {
+  function getPageComponent(name: string) {
+    switch (name) {
+      case 'resume':
+        return <Resume />
+      case 'blog':
+        return <Blog />
+      case 'research':
+        return <Research />
+      case 'about':
+        return <About />
+      default:
+        return <></>
+    }
+  }
+
+  return (
+    <div className='w-svh h-svh bg-stone-50 text-neutral-700'>
+      <Header currentPage={props.params.destinationPage} />
+      <div className='h-full w-full overflow-hidden overflow-y-auto px-20 py-10'>
+        {getPageComponent(props.params.destinationPage)}
+      </div>
+    </div>
+  )
+}

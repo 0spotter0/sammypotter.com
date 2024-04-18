@@ -1,21 +1,32 @@
-export const header = () => {
-  return <HeaderItem destinationPage='about' setPage={() => {}}></HeaderItem>
-}
+import Link from 'next/link'
 
-type HeaderItemProps = {
-  destinationPage: string
-  setPage: React.Dispatch<React.SetStateAction<string>>
-  className?: string
-  children?: React.ReactNode
-}
-
-const HeaderItem = (props: HeaderItemProps) => {
+export const Header = (props: { currentPage: string }) => {
   return (
-    <button
-      onClick={() => props.setPage(props.destinationPage)}
-      className={props.className ?? ''}
-    >
-      {props.children ?? <></>}
-    </button>
+    <div className='flex justify-center gap-20 pb-5 pt-20'>
+      <Link
+        href='/resume'
+        className={`text-center text-2xl ${props.currentPage === 'resume' && 'underline'}`}
+      >
+        resume
+      </Link>
+      <Link
+        href='/blog'
+        className={`text-center text-2xl ${props.currentPage === 'blog' && 'underline'}`}
+      >
+        blog
+      </Link>
+      <Link
+        href='/research'
+        className={`text-center text-2xl ${props.currentPage === 'research' && 'underline'}`}
+      >
+        research
+      </Link>
+      <Link
+        href='/about'
+        className={`text-center text-2xl ${props.currentPage === 'about' && 'underline'}`}
+      >
+        about
+      </Link>
+    </div>
   )
 }
