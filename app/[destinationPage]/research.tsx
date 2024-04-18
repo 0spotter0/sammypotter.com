@@ -40,16 +40,21 @@ type Article = {
 
 const ResearchArticle = (props: { article: Article }) => {
   return (
-    <div className='max-w-[100ch]'>
+    <div className='max-w-[80ch]'>
       <div className='flex justify-between pb-2'>
-        <div className='max-w-[60ch]'>
-          <h1 className='pb-2 text-xl font-bold'>{props.article.title}</h1>
-          <p className='text-lg'>{props.article.authors}</p>
+        <div className='max-w-[60%]'>
+          <h1 className='pb-2 text-lg font-bold'>{props.article.title}</h1>
+          <p className='text-md'>{props.article.authors}</p>
         </div>
-        <p>{props.article.date}</p>
+        <p className='text-lg italic'>{props.article.date}</p>
       </div>
-      <p className='pb-2 italic text-neutral-500'>{props.article.conference}</p>
-      <a className='pb-2 text-blue-600 underline' href={props.article.doi}>
+      <p className='pb-2 text-sm italic text-neutral-500'>
+        {props.article.conference}
+      </p>
+      <a
+        className='pb-2 text-sm text-blue-600/80 underline'
+        href={props.article.doi}
+      >
         {props.article.doi}
       </a>
     </div>
