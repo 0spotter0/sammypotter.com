@@ -11,7 +11,7 @@ export const Header = (props: { currentPage: string }) => {
     <>
       <div className='hidden sm:block'>
         <HeaderLinks
-          currentPage=''
+          currentPage={props.currentPage}
           isBurger={false}
           setIsBurgerMenuOpen={setIsBurgerMenuOpen}
         />
@@ -41,7 +41,7 @@ export const Header = (props: { currentPage: string }) => {
             </button>
           </div>
           <HeaderLinks
-            currentPage=''
+            currentPage={props.currentPage}
             isBurger={true}
             setIsBurgerMenuOpen={setIsBurgerMenuOpen}
           />
