@@ -5,19 +5,44 @@ import './globals.css'
 const futura = localFont({
   src: [
     {
-      path: './fonts/Futura-Medium-01.woff2',
+      path: './fonts/FUTURA45LIGHT.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/FUTURA46LIGHTITALIC.woff2',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: './fonts/FUTURA55REGULAR.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/Futura-MediumItalic-02.woff2',
+      path: './fonts/FUTURA56ITALIC.woff2',
       weight: '400',
       style: 'italic',
     },
     {
-      path: './fonts/Futura-Bold-03.woff2',
+      path: './fonts/FUTURA65MEDIUM.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/FUTURA66MEDIUMITALIC.woff2',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: './fonts/FUTURA75BOLD.woff2',
       weight: '700',
       style: 'normal',
+    },
+    {
+      path: './fonts/FUTURA76BOLDITALIC.woff2',
+      weight: '700',
+      style: 'italic',
     },
   ],
 })

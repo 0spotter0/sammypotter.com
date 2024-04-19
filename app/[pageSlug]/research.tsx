@@ -5,7 +5,7 @@ export const Research = () => {
       authors:
         'Cengiz Ozel, Alexander Martin, Sammy Potter, Nina Long, Sangwu Lee, Tariq Adnan, Amir Zadeh, Ehsan Hoque',
       conference: '2024 Conference on Neural Information Processing Systems',
-      doi: 'doi: 10.1109/ACIIW59127.2023.10388188',
+      doi: 'cool value',
       date: '1 May 2024',
     },
     {
@@ -20,10 +20,10 @@ export const Research = () => {
   ]
 
   return (
-    <div className='mx-auto w-fit pt-16'>
+    <div className='mx-auto w-fit pt-2 sm:pt-16'>
       <div className='flex w-full flex-col gap-14'>
         {articles.map((article) => (
-          <ResearchArticle article={article} />
+          <ResearchArticle key={article.doi} article={article} />
         ))}
       </div>
     </div>
@@ -40,15 +40,15 @@ type Article = {
 
 const ResearchArticle = (props: { article: Article }) => {
   return (
-    <div className='max-w-[80ch]'>
-      <div className='flex justify-between pb-2'>
-        <div className='max-w-[60%]'>
-          <h1 className='pb-2 text-lg font-bold'>{props.article.title}</h1>
-          <p className='text-md'>{props.article.authors}</p>
-        </div>
-        <p className='text-lg italic'>{props.article.date}</p>
-      </div>
-      <p className='pb-2 text-sm italic text-neutral-500'>
+    <div className='max-w-[70ch]'>
+      <p className='pb-1 text-sm italic text-neutral-500'>
+        {props.article.date}
+      </p>
+      <h1 className='text-md pb-2 text-lg font-bold leading-5'>
+        {props.article.title}
+      </h1>
+      <p className='text-md pb-2 leading-5'>{props.article.authors}</p>
+      <p className='text-md pb-2 italic leading-5 text-neutral-500'>
         {props.article.conference}
       </p>
       <a

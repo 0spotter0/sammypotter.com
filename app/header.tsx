@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { SetStateAction, useState } from 'react'
-import { IoMenu } from 'react-icons/io5'
+import { IoClose, IoMenu } from 'react-icons/io5'
 
 export const Header = (props: { currentPage: string }) => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState<boolean>(false)
@@ -28,7 +28,7 @@ export const Header = (props: { currentPage: string }) => {
           </button>
         </div>
         <div
-          className={`visible absolute left-0 top-0 w-full overflow-hidden bg-stone-50 sm:hidden ${isBurgerMenuOpen ? 'h-full' : 'h-0'} transition-all duration-200`}
+          className={`visible absolute left-0 top-0 w-full overflow-hidden bg-stone-200 sm:hidden ${isBurgerMenuOpen ? 'h-full' : 'h-0'} transition-all duration-1000 ease-in-out`}
         >
           <div className='flex w-full justify-end'>
             <button
@@ -37,7 +37,7 @@ export const Header = (props: { currentPage: string }) => {
               }}
               className='p-5'
             >
-              <IoMenu className='text-5xl' />
+              <IoClose className='text-5xl' />
             </button>
           </div>
           <HeaderLinks
@@ -58,32 +58,32 @@ const HeaderLinks = (props: {
 }) => {
   return (
     <div
-      className={`flex justify-center gap-20 pb-5 pt-20 text-xl ${props.isBurger && 'flex-col'}`}
+      className={`flex justify-center pb-5 pt-20 text-xl font-bold ${props.isBurger && 'flex-col gap-20'}`}
       onClick={() => {
         props.setIsBurgerMenuOpen(false)
       }}
     >
       <Link
         href='/resume'
-        className={`text-center ${props.currentPage === 'resume' && 'underline'}`}
+        className={`px-10 text-center ${props.currentPage === 'resume' && 'underline'}`}
       >
         resume
       </Link>
       <Link
         href='/blog'
-        className={`text-center ${props.currentPage === 'blog' && 'underline'}`}
+        className={`px-10 text-center ${props.currentPage === 'blog' && 'underline'}`}
       >
         blog
       </Link>
       <Link
         href='/research'
-        className={`text-center ${props.currentPage === 'research' && 'underline'}`}
+        className={`px-10 text-center ${props.currentPage === 'research' && 'underline'}`}
       >
         research
       </Link>
       <Link
         href='/about'
-        className={`text-center ${props.currentPage === 'about' && 'underline'}`}
+        className={`px-10 text-center ${props.currentPage === 'about' && 'underline'}`}
       >
         about
       </Link>

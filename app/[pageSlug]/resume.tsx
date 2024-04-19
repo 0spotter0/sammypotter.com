@@ -2,11 +2,11 @@ import { IoDownload } from 'react-icons/io5'
 
 export const Resume = () => {
   return (
-    <div className='flex flex-col items-center gap-10'>
+    <div className='flex flex-col items-center gap-10 sm:pt-0'>
       <a href='/Resume_SammyPotter_2024.pdf' download>
-        <div className='flex items-center justify-center gap-2 bg-neutral-700 px-6 py-3 text-stone-50'>
+        <div className='flex items-center justify-center gap-2 bg-neutral-700 px-6 py-3 text-stone-50 transition-transform duration-150 hover:scale-105'>
           <IoDownload className='text-2xl' />
-          <p className='text-lg'>download</p>
+          <p className='text-lg font-medium'>download</p>
         </div>
       </a>
 

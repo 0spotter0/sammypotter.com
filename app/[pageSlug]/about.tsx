@@ -27,7 +27,7 @@ export const About = () => {
   ]
 
   return (
-    <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-20 pt-5'>
+    <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-10 pt-5 sm:gap-20'>
       <div className='flex w-full flex-col items-center gap-8 sm:flex-row'>
         <div className='shrink-0 sm:w-1/3'>
           <Image
@@ -42,7 +42,13 @@ export const About = () => {
         </div>
         <div className='flex w-full flex-col gap-4'>
           <div className='flex items-center gap-2'>
-            <Image src='/flag.gif' width={20} height={11} alt='flag'></Image>
+            <Image
+              src='/flag.gif'
+              width={20}
+              height={11}
+              alt='flag'
+              className='pointer-events-none select-none'
+            ></Image>
             <p>Los Angeles, CA</p>
           </div>
           <p>

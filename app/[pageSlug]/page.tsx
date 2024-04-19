@@ -1,6 +1,6 @@
 'use server'
 
-import { Header } from '../header'
+import { Header } from '../Header'
 import { About } from './about'
 import { Blog } from './blog'
 import { Research } from './research'
@@ -8,7 +8,7 @@ import { Resume } from './resume'
 
 type MainProps = {
   params: {
-    destinationPage: string
+    pageSlug: string
   }
 }
 
@@ -30,9 +30,9 @@ export default async function Main(props: MainProps) {
 
   return (
     <div className='w-svh h-svh'>
-      <Header currentPage={props.params.destinationPage} />
+      <Header currentPage={props.params.pageSlug} />
       <div className='h-full w-full overflow-hidden overflow-y-auto px-5 pb-32 sm:px-20 sm:py-10'>
-        {getPageComponent(props.params.destinationPage)}
+        {getPageComponent(props.params.pageSlug)}
       </div>
     </div>
   )
