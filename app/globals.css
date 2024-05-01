@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .text-dark {
+        @apply text-neutral-700;
+    }
+
+    .text-medium {
+        @apply text-neutral-500;
+    }
+
+    .text-light {
+        @apply text-stone-50;
+    }
+
+    .text-link {
+        @apply text-blue-600;
+    }
+
+}

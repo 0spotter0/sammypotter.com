@@ -2,33 +2,33 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { IoBook, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 
-export const About = () => {
+export default function About() {
   const skills: string[] = [
-    'java',
+    'nextjs',
     'typescript',
-    'c',
-    'c++',
-    'nextis',
     'react',
-    'linux',
-    'vim',
-    'unreal engine',
-    'unity',
-    'blender',
-    'git',
-    'aws',
-    'python',
-    'c#',
-    'bash',
     'html',
     'css',
     'tailwind',
+    'c',
+    'vim',
+    'git',
+    'java',
+    'c#',
+    'python',
+    'blender',
+    'unreal engine',
+    'unity',
+    'linux',
+    'bash',
+    'c++',
+    'aws',
     'lua',
   ]
 
   return (
     <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-10 pt-5 sm:gap-20'>
-      <div className='flex w-full flex-col items-center gap-8 sm:flex-row'>
+      <div className='flex w-full flex-col items-center gap-8 text-lg sm:flex-row'>
         <div className='shrink-0 sm:w-1/3'>
           <Image
             src='/sammy.png'
@@ -36,7 +36,7 @@ export const About = () => {
             height={200}
             alt='headshot image'
           />
-          <p className='pt-1 text-xs text-neutral-500'>
+          <p className='text-medium pt-1 text-xs'>
             special thanks to Cengiz Ozel
           </p>
         </div>
@@ -49,7 +49,7 @@ export const About = () => {
               alt='flag'
               className='pointer-events-none select-none'
             ></Image>
-            <p>Los Angeles, CA</p>
+            <p className='font-medium'>Los Angeles, CA</p>
           </div>
           <p>
             Strongly-typed fan, 3D tinkerer, space enthusiast, neovim
@@ -85,9 +85,9 @@ export const About = () => {
         </div>
       </div>
       <div className='w-full'>
-        <p className='pb-4'>
-          obligatory skills tray with little unclickable bubbles that still have
-          a hover animation:
+        <p className='pb-4 font-medium'>
+          obligatory skills tray with little unclickable bubbles with hover
+          animations:
         </p>
         <div className='flex flex-wrap gap-2'>
           {skills.map((skill) => (
@@ -101,7 +101,7 @@ export const About = () => {
 
 const SkillPill = (props: { name: string }) => {
   return (
-    <p className='rounded-full bg-gray-300 px-4 py-1 transition-transform duration-150 hover:scale-105'>
+    <p className='text-dark rounded-full border border-stone-300 px-4 py-1 pb-1 transition-transform duration-150 hover:scale-105'>
       {props.name}
     </p>
   )

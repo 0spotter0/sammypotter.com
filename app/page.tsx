@@ -3,5 +3,5 @@
 import { redirect } from 'next/navigation'
 
 export default async function Home() {
-  return redirect('/blog')
+  return redirect('/about')
 }
