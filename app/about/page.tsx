@@ -27,7 +27,7 @@ export default function About() {
   ]
 
   return (
-    <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-10 pt-5 sm:gap-20'>
+    <div className='mx-auto flex max-w-[70ch] flex-col items-center gap-10 px-5 pb-20 pt-5 sm:gap-20 sm:px-0'>
       <div className='flex w-full flex-col items-center gap-8 text-lg sm:flex-row'>
         <div className='shrink-0 sm:w-1/3'>
           <Image
@@ -36,7 +36,7 @@ export default function About() {
             height={200}
             alt='headshot image'
           />
-          <p className='text-medium pt-1 text-xs'>
+          <p className='text-secondary pt-1 text-xs'>
             special thanks to Cengiz Ozel
           </p>
         </div>
@@ -55,7 +55,9 @@ export default function About() {
             Strongly-typed fan, 3D tinkerer, space enthusiast, neovim
             evangelist, intermediate Spanish speaker.
           </p>
-          <p>University of Rochester class of 2025, BS Computer Science.</p>
+          <p className='text-secondary italic'>
+            University of Rochester class of 2025, BS Computer Science.
+          </p>
           <div className='flex justify-center gap-4 pt-2 text-3xl sm:justify-start sm:pt-0'>
             <Link
               href='https://github.com/0spotter0'
@@ -101,7 +103,7 @@ export default function About() {
 
 const SkillPill = (props: { name: string }) => {
   return (
-    <p className='text-dark rounded-full border border-stone-300 px-4 py-1 pb-1 transition-transform duration-150 hover:scale-105'>
+    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 transition-transform duration-150 hover:scale-105'>
       {props.name}
     </p>
   )

@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { IoBook } from 'react-icons/io5'
+import { IoArrowUpOutline, IoBook, IoLinkOutline } from 'react-icons/io5'
+import LinkButton from '../components/LinkButton'
 
 export default function Research() {
   const articles: Article[] = [
@@ -25,7 +26,7 @@ export default function Research() {
   ]
 
   return (
-    <div className='mx-auto w-fit pt-2 sm:pt-16'>
+    <div className='mx-auto w-fit px-5 sm:pt-16'>
       <div className='flex w-full flex-col gap-14'>
         {articles.map((article) => (
           <ResearchArticle key={article.doi} article={article} />
@@ -47,27 +48,25 @@ type Article = {
 const ResearchArticle = (props: { article: Article }) => {
   return (
     <div className='max-w-[75ch]'>
-      <p className='text-medium text-md pb-1 italic'>{props.article.date}</p>
-      <h1 className='pb-4 text-xl font-bold leading-5'>
+      <p className='text-secondary text-md pb-1 italic'>{props.article.date}</p>
+      <h2 className='text-primary pb-4 text-xl font-bold leading-5 dark:font-medium'>
         {props.article.title}
-      </h1>
-      <p className='pb-2 text-lg leading-5'>{props.article.authors}</p>
-      <p className='text-medium pb-3 text-lg italic leading-5'>
+      </h2>
+      <p className='text-secondary pb-2 text-lg leading-5'>
+        {props.article.authors}
+      </p>
+      <p className='text-tertiary text-md pb-3 italic leading-5'>
         {props.article.conference}
       </p>
-      <div className='w-fit'>
-        <Link
-          className='text-light text-md font-medium'
-          href={props.article.link}
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <div className='flex w-fit items-center gap-3 rounded-lg bg-neutral-700 px-4 py-2 transition-transform duration-200 hover:scale-[103%]'>
-            <IoBook />
-            <p className='pb-[2px]'>View paper</p>
-          </div>
-        </Link>
-      </div>
+      <Link
+        className='text-link text-md flex w-fit items-center gap-2 font-medium underline'
+        href={props.article.link}
+        rel='noopener noreferrer'
+        target='_blank'
+      >
+        <p>View paper</p>
+        <IoLinkOutline className='text-xl' />
+      </Link>
     </div>
   )
 }

@@ -7,10 +7,13 @@ export default function Resume() {
     <div className='flex h-full flex-col items-center justify-center gap-4 sm:justify-start sm:pt-16'>
       <a href='/Resume_SammyPotter_2024.pdf' download>
         <LinkButton>
-          <IoDownload className='text-2xl' />
-          <p>download</p>
+          <IoDownload className='text-xl' />
+          <p>Download</p>
         </LinkButton>
       </a>
+
+      <p>or</p>
+
       <Link
         className='text-link'
         href='/Resume_SammyPotter_2024.pdf'

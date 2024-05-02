@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { Navbar } from './components/Navbar'
 import './globals.css'
+import { cookies } from 'next/headers'
 
 const futura = localFont({
   src: [
@@ -57,13 +58,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = cookies()
+  const theme: string = cookieStore.get('theme')?.value ?? ''
+
   return (
     <html lang='en'>
       <body
-        className={`${futura.className} text-dark overflow-hidden bg-stone-50`}
+        className={`${futura.className} ${theme === 'dark' && 'dark'} text-primary bg-main ease overflow-hidden overflow-y-auto transition-colors duration-200 ease-in-out`}
       >
         <Navbar />
-        {children}
+        <div className='mt-10 sm:mt-28'>{children}</div>
       </body>
     </html>
   )
