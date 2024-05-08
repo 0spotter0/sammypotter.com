@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import { IoDownload } from 'react-icons/io5'
-import LinkButton from '../components/LinkButton'
 
 export default function Resume() {
   return (
     <div className='flex h-full flex-col items-center justify-center gap-4 sm:justify-start sm:pt-16'>
       <a href='/Resume_SammyPotter_2024.pdf' download>
-        <LinkButton>
+        <div className='flex gap-2'>
           <IoDownload className='text-xl' />
           <p>Download</p>
-        </LinkButton>
+        </div>
       </a>
 
       <p>or</p>

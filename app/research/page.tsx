@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { IoArrowUpOutline, IoBook, IoLinkOutline } from 'react-icons/io5'
-import LinkButton from '../components/LinkButton'
+import { IoLinkOutline } from 'react-icons/io5'
 
 export default function Research() {
   const articles: Article[] = [
@@ -48,25 +47,30 @@ type Article = {
 const ResearchArticle = (props: { article: Article }) => {
   return (
     <div className='max-w-[75ch]'>
-      <p className='text-secondary text-md pb-1 italic'>{props.article.date}</p>
       <h2 className='text-primary pb-4 text-xl font-bold leading-5 dark:font-medium'>
         {props.article.title}
       </h2>
       <p className='text-secondary pb-2 text-lg leading-5'>
         {props.article.authors}
       </p>
-      <p className='text-tertiary text-md pb-3 italic leading-5'>
+      <p className='text-tertiary font-light text-md pb-3 leading-5'>
         {props.article.conference}
       </p>
-      <Link
-        className='text-link text-md flex w-fit items-center gap-2 font-medium underline'
-        href={props.article.link}
-        rel='noopener noreferrer'
-        target='_blank'
-      >
-        <p>View paper</p>
-        <IoLinkOutline className='text-xl' />
-      </Link>
+      <div className='flex gap-4 items-center text-secondary'>
+        <p className='text-md font-mono'>
+          {props.article.date}
+        </p>
+        <p>|</p>
+        <Link
+          className='text-md flex w-fit items-center gap-2 font-mono underline'
+          href={props.article.link}
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <p>View paper</p>
+          <IoLinkOutline className='text-xl' />
+        </Link>
+      </div>
     </div>
   )
 }

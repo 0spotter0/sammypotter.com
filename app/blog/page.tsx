@@ -16,9 +16,12 @@ export default async function Blog() {
   const posts = await getPostsMetadata()
 
   return (
-    <div className='flex w-full flex-wrap justify-center gap-8 px-20'>
+    <div className='mx-auto flex w-full flex-col gap-2 px-20 px-5 pb-20 sm:w-fit sm:pt-10 md:max-w-[70vw] lg:max-w-[50vw]'>
       {posts.map((post: BlogPost) => (
-        <PostPreview key={post.slug} post={post} />
+        <>
+          <PostPreview key={post.slug} post={post} />
+          <hr className='h-px border-0 bg-stone-200 last:hidden dark:bg-neutral-600' />
+        </>
       ))}
     </div>
   )
@@ -30,19 +33,14 @@ const PostPreview = (props: { post: BlogPost }) => {
       href={`/blog/${props.post.slug}`}
       className='rounded-xl p-4 ring-stone-300/40 transition-all duration-200'
     >
-      <div className='mb-2 flex aspect-[16/10] w-[350px] max-w-full items-center justify-center overflow-hidden bg-stone-200 dark:bg-neutral-700'>
-        {props.post.thumbnail ? (
-          <img
-            src={props.post.thumbnail}
-            alt={`thumbnail for ${props.post.slug}`}
-            className='object-cover'
-          />
-        ) : (
-          <p className='text-secondary'>no image</p>
-        )}
+      <div className='flex flex-col flex-col-reverse gap-3 sm:flex-row sm:gap-8'>
+        <h2 className='text-secondary w-24 shrink-0 grow-0 font-mono text-xs sm:w-32 sm:text-base'>
+          {props.post.date}
+        </h2>
+        <h2 className='line-clamp-2 overflow-hidden text-ellipsis font-medium dark:font-normal'>
+          {props.post.title}
+        </h2>
       </div>
-      <h2 className='text-lg font-medium'>{props.post.title}</h2>
-      <h2 className='text-md text-secondary'>{props.post.date}</h2>
     </Link>
   )
 }

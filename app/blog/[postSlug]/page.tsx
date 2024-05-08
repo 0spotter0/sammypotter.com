@@ -1,6 +1,5 @@
 'use server'
 
-import LinkButton from '@/app/components/LinkButton'
 import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -27,7 +26,7 @@ export default async function Post(props: PostProps) {
   if (!postMetadata) return notFound()
 
   return (
-    <div className='flex h-svh w-svw flex-col items-center gap-12 overflow-hidden overflow-y-auto pb-20'>
+    <div className='flex h-svh w-svw flex-col items-center gap-6 overflow-hidden overflow-y-auto pb-20 sm:gap-12 sm:pt-10'>
       <Link
         href='/blog'
         className='text-link flex items-center gap-2 underline'
@@ -40,7 +39,7 @@ export default async function Post(props: PostProps) {
         <h2 className='text-md text-secondary pb-10 font-light'>
           {postMetadata.subtitle}
         </h2>
-        <article className='prose w-full max-w-[70ch] lg:prose-xl dark:prose-invert prose-img:mx-auto'>
+        <article className='prose w-full max-w-prose lg:prose-xl dark:prose-invert prose-img:mx-auto'>
           <Markdown>{postMetadata.content}</Markdown>
         </article>
       </div>

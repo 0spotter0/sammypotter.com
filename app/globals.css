@@ -3,27 +3,31 @@
 @tailwind utilities;
 
 @layer utilities {
-    .text-primary {
-       @apply text-neutral-700 dark:text-neutral-200;
-    }
+  .text-primary {
+    @apply text-neutral-700 dark:text-stone-300;
+  }
 
-    .text-secondary {
-      @apply text-neutral-500 dark:text-neutral-400;
-    }
+  .text-secondary {
+    @apply text-neutral-500 dark:text-neutral-400;
+  }
 
-    .text-tertiary {
-      @apply text-neutral-400 dark:text-neutral-500;
-    }
+  .text-tertiary {
+    @apply text-neutral-400 dark:text-neutral-500;
+  }
 
-    .text-highlight {
-      @apply text-stone-50;
-    }
+  .text-highlight {
+    @apply text-stone-50;
+  }
 
-    .text-link {
-      @apply text-blue-600 dark:text-blue-400;
-    }
+  .text-link {
+    @apply text-blue-600 dark:text-blue-400;
+  }
 
-    .bg-main {
-      @apply bg-stone-50 dark:bg-neutral-800
-    }
+  .bg-main {
+    @apply bg-stone-50 dark:bg-neutral-800;
+  }
+
+  .image-pixelated {
+    image-rendering: pixelated;
+  }
 }
