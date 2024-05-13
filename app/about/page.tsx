@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { IoLogoGithub, IoLogoLinkedin, IoMail, IoSchool } from 'react-icons/io5'
 
 export default function About() {
   const skills: string[] = [
@@ -45,33 +46,40 @@ export default function About() {
             href='https://github.com/0spotter0'
             rel='noopener noreferrer'
             target='_blank'
-            className='underline transition-transform duration-150'
+            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
           >
-            <p>github</p>
+            <IoLogoGithub className='text-3xl' />
+            <p className='font-mono font-light'>github</p>
           </Link>
           <Link
             href='https://scholar.google.com/citations?user=G8Cp2AMAAAAJ'
             rel='noopener noreferrer'
             target='_blank'
-            className='underline transition-transform duration-150'
+            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
           >
-            <p>google scholar</p>
+            <IoSchool className='text-3xl' />
+            <p className='font-mono font-light'>
+              <span className='hidden underline sm:inline-block'>google</span>{' '}
+              scholar
+            </p>
           </Link>
           <Link
             href='https://www.linkedin.com/in/pottersammy/'
             rel='noopener noreferrer'
             target='_blank'
-            className='underline transition-transform duration-150'
+            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
           >
-            <p>linkedin</p>
+            <IoLogoLinkedin className='text-3xl' />
+            <p className='font-mono font-light'>linkedin</p>
           </Link>
           <Link
             href='mailto:s.potter@rochester.edu'
             rel='noopener noreferrer'
             target='_blank'
-            className='underline transition-transform duration-150'
+            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
           >
-            <p>email</p>
+            <IoMail className='text-3xl' />
+            <p className='font-mono font-light'>email</p>
           </Link>
         </div>
       </div>
