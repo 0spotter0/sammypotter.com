@@ -24,7 +24,7 @@ export default function RootLayout({
         className={
           `${GeistSans.variable} ${GeistMono.variable} ${themeIsDark && 'dark'}` +
           ' ' +
-          'text-primary bg-main overflow-hidden overflow-y-auto font-sans filter-none transition-colors duration-200 ease-in-out'
+          'text-primary bg-main overflow-hidden overflow-y-auto font-sans filter-none transition-colors duration-200'
         }
       >
         <Navbar />

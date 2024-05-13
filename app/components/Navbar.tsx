@@ -33,7 +33,7 @@ export const Navbar = () => {
           </button>
         </div>
         <div
-          className={`bg-main visible absolute left-0 top-0 w-full overflow-hidden sm:hidden ${isBurgerMenuOpen ? 'h-full' : 'h-0'} transition-all duration-1000 ease-in-out`}
+          className={`bg-main visible absolute left-0 top-0 w-full overflow-hidden sm:hidden ${isBurgerMenuOpen ? 'h-full' : 'h-0'} transition-all duration-500 ease-in-out`}
         >
           <div className='flex w-full justify-end'>
             <button
@@ -76,28 +76,28 @@ const HeaderLinks = (props: {
         <Link
           onClick={() => handlePageChange('resume')}
           href='/resume'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-100 ease-in-out ${props.currentPage === 'resume' && 'bg-stone-200 dark:bg-neutral-700'}`}
+          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'resume' && 'bg-stone-200 dark:bg-neutral-700'}`}
         >
           resume
         </Link>
         <Link
           onClick={() => handlePageChange('research')}
           href='/research'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-all duration-100 ease-in-out ${props.currentPage === 'research' && 'bg-stone-200 dark:bg-neutral-700'}`}
+          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'research' && 'bg-stone-200 dark:bg-neutral-700'}`}
         >
           research
         </Link>
         <Link
           onClick={() => handlePageChange('blog')}
           href='/blog'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-100 ease-in-out ${props.currentPage === 'blog' && 'bg-stone-200 dark:bg-neutral-700'}`}
+          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'blog' && 'bg-stone-200 dark:bg-neutral-700'}`}
         >
           blog
         </Link>
         <Link
           onClick={() => handlePageChange('about')}
           href='/about'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-100 ease-in-out ${props.currentPage === 'about' && 'bg-stone-200 dark:bg-neutral-700'}`}
+          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'about' && 'bg-stone-200 dark:bg-neutral-700'}`}
         >
           about
         </Link>
