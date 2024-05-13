@@ -3,11 +3,11 @@ import { IoDownload } from 'react-icons/io5'
 
 export default function Resume() {
   return (
-    <div className='mx-auto flex max-w-prose flex-col items-center gap-6 px-5 pb-20 sm:pt-16'>
+    <div className='mx-auto flex max-w-prose flex-col items-center gap-6 px-5 pb-20 sm:pt-10'>
       <a href='/Resume_SammyPotter_2024.pdf' download className='mb-2'>
         <div className='flex gap-2 rounded-lg bg-stone-200 px-4 py-2 dark:bg-neutral-700'>
           <IoDownload className='text-xl' />
-          <p>Download as PDF</p>
+          <p>Download PDF</p>
         </div>
       </a>
 
@@ -16,7 +16,7 @@ export default function Resume() {
       </h1>
       <ResumeSection title={'Education'}>
         <ResumeExperienceItem
-          title={'University of Rochester'}
+          title='University of Rochester'
           subtitle='Bachelor of Science, Computer Science'
           location='Rochester, NY'
           date='Anticipated 2025'
@@ -25,7 +25,7 @@ export default function Resume() {
           <li>Best Space Themed App – DandyHacks 2021</li>
         </ResumeExperienceItem>
         <ResumeExperienceItem
-          title={'Universidad Complutense de Madrid'}
+          title='Universidad Complutense de Madrid'
           subtitle='Institute for the International Education of Students Abroad'
           location='Madrid, Spain'
           date='Jan 2024 – June 2024'
