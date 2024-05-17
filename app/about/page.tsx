@@ -117,7 +117,7 @@ export default function About() {
 
 const SkillPill = (props: { name: string }) => {
   return (
-    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 font-mono transition-transform duration-150'>
+    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 font-mono hover:scale-105 transition-transform duration-150'>
       {props.name}
     </p>
   )
