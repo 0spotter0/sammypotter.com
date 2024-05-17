@@ -18,10 +18,10 @@ export default async function Blog() {
   return (
     <div className='mx-auto flex w-full flex-col gap-2 px-20 px-5 pb-20 sm:w-fit sm:pt-10 md:max-w-[70vw] lg:max-w-[50vw]'>
       {posts.map((post: BlogPost) => (
-        <>
+        <div key={post.slug} className='group'>
           <PostPreview key={post.slug} post={post} />
-          <hr className='h-px border-0 bg-stone-200 last:hidden dark:bg-neutral-600' />
-        </>
+          <div className='h-px w-full border-0 bg-stone-200 group-last:hidden dark:bg-neutral-600' />
+        </div>
       ))}
     </div>
   )
