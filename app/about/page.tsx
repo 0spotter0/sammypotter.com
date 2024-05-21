@@ -95,7 +95,7 @@ export default function About() {
           <p className='font-medium'>Los Angeles, CA</p>
         </div>
         <p>
-          Strongly-typed fan, 3D tinkerer, space enthusiast, neovim evangelist,
+          Strongly-typed fan, 3D tinkerer, space enthusiast, neovim proponent,
           intermediate Spanish speaker.
         </p>
         <p>University of Rochester class of 2025, BS Computer Science.</p>

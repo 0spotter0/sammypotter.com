@@ -57,6 +57,8 @@ export const Navbar = () => {
   )
 }
 
+const availablePages = ['resume', 'research', 'about']
+
 const HeaderLinks = (props: {
   currentPage: string
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>
@@ -73,34 +75,16 @@ const HeaderLinks = (props: {
       className={`flex w-full items-center p-[1.7rem] text-xl font-normal sm:justify-between ${props.isBurger && 'flex-col gap-20'}`}
     >
       <div className='flex w-fit flex-col gap-4 sm:flex-row'>
-        <Link
-          onClick={() => handlePageChange('resume')}
-          href='/resume'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'resume' && 'bg-stone-200 dark:bg-neutral-700'}`}
-        >
-          resume
-        </Link>
-        <Link
-          onClick={() => handlePageChange('research')}
-          href='/research'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'research' && 'bg-stone-200 dark:bg-neutral-700'}`}
-        >
-          research
-        </Link>
-        <Link
-          onClick={() => handlePageChange('blog')}
-          href='/blog'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'blog' && 'bg-stone-200 dark:bg-neutral-700'}`}
-        >
-          blog
-        </Link>
-        <Link
-          onClick={() => handlePageChange('about')}
-          href='/about'
-          className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === 'about' && 'bg-stone-200 dark:bg-neutral-700'}`}
-        >
-          about
-        </Link>
+        {availablePages.map((page) => (
+          <Link
+            key={page}
+            onClick={() => handlePageChange(page)}
+            href={`/${page}`}
+            className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center transition-colors duration-200 ${props.currentPage === page && 'bg-stone-200 dark:bg-neutral-700'}`}
+          >
+            {page}
+          </Link>
+        ))}
       </div>
       <div className='flex w-fit items-center justify-center pt-10 sm:justify-end sm:pt-0'>
         <button
