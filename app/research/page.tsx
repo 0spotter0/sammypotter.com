@@ -3,15 +3,15 @@ import { IoLinkOutline } from 'react-icons/io5'
 
 export default function Research() {
   const articles: Article[] = [
-    {
-      title: 'Hi5 : 2D Hand Pose Estimation with Zero Human Annotation',
-      authors:
-        'Cengiz Ozel, Alexander Martin, Sammy Potter, Nina Long, Sangwu Lee, Tariq Adnan, Amir Zadeh, Ehsan Hoque',
-      conference: '2024 Conference on Neural Information Processing Systems',
-      doi: 'cool value',
-      link: 'https://ieeexplore.ieee.org/document/10388188',
-      date: '1 May 2024',
-    },
+//    {
+//      title: 'Hi5 : 2D Hand Pose Estimation with Zero Human Annotation',
+//      authors:
+//        'Cengiz Ozel, Alexander Martin, Sammy Potter, Nina Long, Sangwu Lee, Tariq Adnan, Amir Zadeh, Ehsan Hoque',
+//      conference: '2024 Conference on Neural Information Processing Systems',
+//      doi: 'cool value',
+//      link: 'https://ieeexplore.ieee.org/document/10388188',
+//      date: '1 May 2024',
+//    },
     {
       title:
         'SAPIEN: Affective Virtual Agents Powered by Large Language Models',
