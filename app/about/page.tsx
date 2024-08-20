@@ -27,7 +27,7 @@ export default function About() {
   ]
 
   return (
-    <div className='mx-auto flex max-w-[70ch] flex-col justify-center gap-10 px-5 pb-20 pt-5 sm:flex-row sm:gap-20 sm:px-0 sm:pt-14'>
+    <div className='mx-auto flex max-w-[70ch] flex-col justify-center gap-10 px-5 pb-20 pt-5 sm:flex-row sm:gap-20 sm:pt-14'>
       <div className='flex flex-col'>
         <div className='mx-auto w-1/2 sm:w-full'>
           <Image
@@ -83,7 +83,7 @@ export default function About() {
           </Link>
         </div>
       </div>
-      <div className='flex w-full flex-col gap-4'>
+      <div className='flex w-full flex-col gap-4 md:pt-5'>
         <div className='flex items-center gap-2'>
           <Image
             src='/flag.gif'
@@ -94,11 +94,8 @@ export default function About() {
           ></Image>
           <p className='font-medium'>Los Angeles, CA</p>
         </div>
-        <p>
-          Strongly-typed fan, 3D tinkerer, space enthusiast, neovim proponent,
-          intermediate Spanish speaker.
-        </p>
-        <p>University of Rochester class of 2025, BS Computer Science.</p>
+        <p>Fourth-year computer science student at University of Rochester. Primary experience in full-stack web development and realtime 3D technology.</p>
+        <p>I use vim btw</p>
         <div className='w-full pt-4 sm:pt-16'>
           <p className='pb-4 font-medium'>
             obligatory skills tray with little unclickable bubbles with hover
@@ -117,7 +114,7 @@ export default function About() {
 
 const SkillPill = (props: { name: string }) => {
   return (
-    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 font-mono hover:scale-105 transition-transform duration-150'>
+    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 font-mono transition-transform duration-150 hover:scale-105'>
       {props.name}
     </p>
   )

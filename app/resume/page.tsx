@@ -45,20 +45,11 @@ export default function Resume() {
       <ResumeSection title={'Experience'}>
         <ResumeExperienceItem
           title='Saudi Authority for Data and Artificial Intelligence'
-          subtitle='Remote Researcher'
+          subtitle='Researcher | AI Engineer'
           location='Remote'
           date='Nov 2023 – Present'
         >
-          <li>
-            Developed a specialized 3D avatar system utilizing Unreal Engine 5
-            and Large Language Models to create a conversational Al education
-            tool.
-          </li>
-          <li>
-            Coordinated with a multinational team of developers to integrate the
-            3D avatar into the application, coordinate provisioning of Microsoft
-            Azure cloud resources, and deploy the application online.
-          </li>
+          <p className='font-bold'>NDA - Engineering Project</p>
         </ResumeExperienceItem>
         <ResumeExperienceItem
           title='University of Rochester Human Computer Interaction Lab'
