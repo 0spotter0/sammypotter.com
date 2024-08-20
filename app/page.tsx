@@ -1,5 +1,8 @@
 'use server'
 
+import { redirect } from "next/navigation"
+
 export default async function Home() {
-  return <></>
+  return redirect(process.env.INDEX_REWRITE_DESTINATION!)
 }
+
