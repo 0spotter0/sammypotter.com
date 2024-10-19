@@ -38,8 +38,8 @@ export default function Resume() {
       <ResumeSection title={'Publications'}>
         <div className='pl-4 font-light'>
           <p>
-            M. Hasan, C. Ozel, <b>S. Potter</b> and E. Hoque, "SAPIEN: Affective
-            Virtual Agents Powered by Large Language Models," in <i>2023 11th
+            M. Hasan, C. Ozel, <b>S. Potter</b> and E. Hoque, &quot;SAPIEN: Affective
+            Virtual Agents Powered by Large Language Models,&quot; in <i>2023 11th
             International Conference on Affective Computing and Intelligent
             Interaction Workshops and Demos (ACIIW)</i>, Cambridge, MA, USA, 2023
             pp. 1‐3.
