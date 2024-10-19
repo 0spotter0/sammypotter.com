@@ -21,72 +21,72 @@ export default function Resume() {
           location='Rochester, NY'
           date='Anticipated 2025'
         >
-          <li>Dean’s Scholarship (all semesters)</li>
+          <li>
+            (Nominated) Computing Research Association Outstanding Undergraduate
+            Researcher Award
+          </li>
           <li>Best Space Themed App – DandyHacks 2021</li>
+          <li>Dean’s Scholarship (all semesters)</li>
         </ResumeExperienceItem>
         <ResumeExperienceItem
           title='Universidad Complutense de Madrid'
           subtitle='Institute for the International Education of Students Abroad'
           location='Madrid, Spain'
-          date='Jan 2024 – June 2024'
+          date='Jan 2024 – Jun 2024'
         />
       </ResumeSection>
-      <ResumeSection title={'Skills'}>
-        <ul className='ml-8 list-disc font-normal'>
-          <li>
-            Unity, Blender3D, Unreal Engine 5, Adobe Creative Suite, Git, Vim
-          </li>
-          <li>
-            NextJS, React, TypeScript, Python, C#, Java, Bash, HTML/CSS, Lua
-          </li>
-          <li>Spanish (Intermediate conversational)</li>
-        </ul>
+      <ResumeSection title={'Publications'}>
+        <div className='pl-4 font-light'>
+          <p>
+            M. Hasan, C. Ozel, <b>S. Potter</b> and E. Hoque, "SAPIEN: Affective
+            Virtual Agents Powered by Large Language Models," in <i>2023 11th
+            International Conference on Affective Computing and Intelligent
+            Interaction Workshops and Demos (ACIIW)</i>, Cambridge, MA, USA, 2023
+            pp. 1‐3.
+          </p>
+        </div>
       </ResumeSection>
       <ResumeSection title={'Experience'}>
         <ResumeExperienceItem
-          title='Saudi Authority for Data and Artificial Intelligence'
-          subtitle='Researcher | AI Engineer'
+          title='Researcher | AI Engineer'
+          subtitle='Saudi Authority for Data and Artificial Intelligence'
           location='Remote'
-          date='Nov 2023 – Present'
-        >
-          <p className='font-bold'>NDA - Engineering Project</p>
-        </ResumeExperienceItem>
-        <ResumeExperienceItem
-          title='University of Rochester Human Computer Interaction Lab'
-          subtitle='Research Assistant'
-          location='Rochester, NY'
-          date='June 2022 – Present'
+          date='Nov 2023 – Sep 2024'
         >
           <li>
-            Developed and tested methods for synthetic data generation for
-            training hand tracking machine learning models using the Unity Game
-            Engine.
+            Co‐developed KALEEM: a humanoid tutor that is personalized,
+            adaptive, multimodal and available anytime, anywhere.
           </li>
           <li>
-            Leveraged GPT-4 and Unreal Engine 5 to develop a virtual chatbot for
+            The system was premiered at the Global AI Summit 2024 organized by
+            the Kingdom of Saudi Arabia.
+          </li>
+          <li>NDA – No further information available.</li>
+        </ResumeExperienceItem>
+        <ResumeExperienceItem
+          title='Research Assistant'
+          subtitle='University of Rochester Human Computer Interaction Lab'
+          location='Rochester, NY'
+          date='Jun 2022 – Present'
+        >
+          <li>
+            Developed and tested methods for synthetic data generation for hand
+            tracking machine learning models using Unity.
+          </li>
+          <li>
+            Leveraged GPT‐4 and Unreal Engine 5 to develop a virtual chatbot for
             teaching, job interview and conversation practice.
           </li>
           <li>
             Created an interactive full stack website for the chatbot using
             Flask on Amazon Web Services.
           </li>
-          <li>
-            Co-authored, published, and demoed a paper at ACII 2023 Conference
-            <a
-              href='https://arxiv.org/abs/2308.03022'
-              className='text-link pl-[.5rem] underline'
-              rel='noopener noreferrer'
-              target='_blank'
-            >
-              (View on arXiv)
-            </a>
-          </li>
         </ResumeExperienceItem>
         <ResumeExperienceItem
-          title='University of Rochester | CSC 171: Intro to CS with Java'
-          subtitle='Peer-Led Team Learning Workshop Leader'
+          title='Teaching Assistant'
+          subtitle='University of Rochester | CSC 171: Intro to CS with Java'
           location='Rochester, NY'
-          date='Jan 2022 – June 2022'
+          date='Jan 2022 – Jun 2022'
         >
           <li>Led two 75-minute workshops of 12 students each per week.</li>
           <li>
@@ -94,64 +94,75 @@ export default function Resume() {
             other in an interactive learning environment.
           </li>
           <li>
-            Produced a final research project aimed at improving the learning
-            experience for Computer Science courses through virtual online
-            exercises.
+            Produced a final research project aimed at improving the CS learning
+            experience through virtual online exercises.
           </li>
         </ResumeExperienceItem>
       </ResumeSection>
       <ResumeSection title={'Projects'}>
+        <ResumeExperienceItem title='ThankYouEpicDB' location='Present'>
+          <li>
+            Designed and implemented an index of 8,000+ images and videos for a
+            ‘meme’ library, enabling semantic search.
+          </li>
+          <li>
+            Integrated AI‐based content analysis, storing results in an SQL
+            database to enable seamless search and retrieval.
+          </li>
+          <li>
+            Developed front end website for querying the database using Next.js
+            and ElasticSearch.
+          </li>
+        </ResumeExperienceItem>
         <ResumeExperienceItem
-          title='Spotify Song Predictor'
-          location='April 2023'
+          title='Salendar: DandyHacks 2023'
+          location='Nov 2023'
+        >
+          <li>
+            Developed a full‐stack application with Next.js and Flask enabling
+            automatic course schedule calendar setup.
+          </li>
+          <li>
+            Utilized the Google Cloud and OpenAI API to streamline syllabus
+            parsing and Google calender generation.
+          </li>
+        </ResumeExperienceItem>
+        <ResumeExperienceItem
+          title='Spotify Song Predictor: CSC 240: Data Mining'
+          location='Apr 2023'
         >
           <li>
             Performed data cleaning and feature selection on data from 30,000
             songs over 15 attributes.
           </li>
           <li>
-            Trained a Decision Tree Classifier and a Gradient-Boosted Tree
-            Classifier in Python to classify songs as hits or flops based on
-            song attributes.
+            Trained a Decision Tree Classifier and a Gradient‐Boosted Tree
+            Classifier in Python to classify songs as hits or flops.
           </li>
           <li>
-            Developed a front-end to allow users to interact with and test our
+            Developed a front‐end to allow users to interact with and test our
             model’s performance.
           </li>
           <li>
             Prepared and delivered a presentation on our results, winning ‘best
-            presentation of the day.
-          </li>
-        </ResumeExperienceItem>
-        <ResumeExperienceItem
-          title='SpaceScape | DandyHacks 2021'
-          location='October 2021'
-        >
-          <li>
-            In a 3-person team, developed a two-player 2D space shooter with a
-            custom physics & collision engine in Lua.
-          </li>
-          <li>
-            Developed a working knowledge of Lua during the 48-hour event.
+            presentation of the day.’
           </li>
         </ResumeExperienceItem>
       </ResumeSection>
-      <ResumeSection title={'Campus Leadership Activities'}>
-        <ResumeExperienceItem
-          title='Google Developer Student Club'
-          subtitle='Tech Team Member, E-board'
-          location='Rochester, NY'
-          date='Sep 2022 – Jan 2023'
-        >
+      <ResumeSection title={'Technical Skills'}>
+        <ul className='ml-8 list-disc font-normal'>
           <li>
-            Introduced prospective developers to software development through
-            weekly general member meetings.
+            <b>Languages:</b> Java, Python, C, C#, SQL (Postgres), TypeScript,
+            HTML/CSS, Swift
           </li>
           <li>
-            Led a workshop teaching basic command-line skills to new CS
-            students.
+            <b>Frameworks</b> React, Node.js, Next.js, Flask, Tailwind, SwiftUI
           </li>
-        </ResumeExperienceItem>
+          <li>
+            <b>Tools:</b> Git, AWS, Google Cloud Platform, Neovim, Adobe
+            Creative Suite, Unity, Unreal Engine 5, ElasticSearch
+          </li>
+        </ul>
       </ResumeSection>
     </div>
   )
