@@ -4,7 +4,7 @@ import { IoDownload } from 'react-icons/io5'
 export default function Resume() {
   return (
     <div className='mx-auto flex max-w-prose flex-col items-center gap-6 px-5 pb-20 sm:pt-10'>
-      <a href='/Resume_SammyPotter_2024.pdf' download className='mb-2'>
+      <a href='/Resume_SamuelPotter_2024.pdf' download className='mb-2'>
         <div className='flex gap-2 rounded-lg bg-stone-200 px-4 py-2 dark:bg-neutral-700'>
           <IoDownload className='text-xl' />
           <p>Download PDF</p>
