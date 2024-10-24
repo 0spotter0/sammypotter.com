@@ -86,4 +86,8 @@
         60% 50%;
     }
   }
+
+  .chromatic-aberration {
+    -webkit-filter: url(#chromaticAberration);
+  }
 }

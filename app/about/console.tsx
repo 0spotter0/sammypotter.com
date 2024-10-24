@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export function Console() {
   const [inputValue, setInputValue] = useState<string>(
-`~ > fastfetch
+    `~ > fastfetch
                                   sammypotter@dhcp-00-0-000-00
                  ,xNMM.           ----------------------------
                .OMMMMo            OS: macOS Sequoia 15.0 arm64
@@ -39,6 +39,8 @@ Resume.txt
   )
   const [isScanlinesEnabled, setIsScanlinesEnabled] = useState<boolean>(true)
   const [isGrainEnabled, setIsGrainEnabled] = useState<boolean>(false)
+  const [isChromaticAberrationEnabled, setIsChromaticAberrationEnabled] =
+    useState<boolean>(true)
 
   enum ConsoleTheme {
     red,
@@ -59,7 +61,7 @@ Resume.txt
   const [themeColor, setThemeColor] = useState(ConsoleTheme.green)
 
   return (
-    <div className='relative -mt-24 h-svh w-full overflow-hidden bg-black'>
+    <div className='relative h-svh w-full overflow-hidden bg-black sm:-mt-24'>
       <div
         className={`relative flex h-full w-full items-center justify-center overflow-hidden text-nowrap bg-black`}
         style={{ fontFamily: 'VCR OSD Mono' }}
@@ -69,7 +71,9 @@ Resume.txt
         >
           <p className='whitespace-pre leading-5'>{inputValue}</p>
         </div>
-        <div className={`absolute inset-0 p-6 text-white`}>
+        <div
+          className={`${isChromaticAberrationEnabled ? 'chromatic-aberration' : ''} absolute inset-0 p-6 text-white`}
+        >
           <p className='whitespace-pre leading-5'>{inputValue}</p>
         </div>
       </div>
@@ -91,6 +95,72 @@ Resume.txt
       />
       <div className='vignette pointer-events-none absolute left-0 top-0 h-full w-full' />
       <div className='pointer-events-none absolute left-0 top-0 h-full w-full border-[12px] border-black ring-8 ring-black blur-[2px]' />
+      <ChromaticAberrationProvider />
+      <div className='absolute bottom-2 flex w-full justify-center gap-4'>
+        <button
+          className={`rounded border-2 border-neutral-500 bg-neutral-500 px-2 text-white ${isScanlinesEnabled ? 'bg-neutral-400' : 'bg-neutral-800 '}`}
+          onClick={() => setIsScanlinesEnabled(!isScanlinesEnabled)}
+        >
+          scan
+        </button>
+        <button
+          className={`rounded border-2 border-neutral-500 bg-neutral-500 px-2 text-white ${isChromaticAberrationEnabled ? 'bg-neutral-400' : 'bg-neutral-800 '}`}
+          onClick={() =>
+            setIsChromaticAberrationEnabled(!isChromaticAberrationEnabled)
+          }
+        >
+          chrom
+        </button>
+        <button
+          className={`rounded border-2 border-neutral-500 bg-neutral-500 px-2 text-white ${isGrainEnabled ? 'bg-neutral-400' : 'bg-neutral-800 '}`}
+          onClick={() => setIsGrainEnabled(!isGrainEnabled)}
+        >
+          grain
+        </button>
+        <select
+          id='theme-select'
+          className='rounded bg-neutral-500 px-2 py-1 text-white'
+          value={themeColor}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setThemeColor(Number(e.target.value) as ConsoleTheme)
+          }}
+        >
+          <option value={ConsoleTheme.red}>red</option>
+          <option value={ConsoleTheme.amber}>amber</option>
+          <option value={ConsoleTheme.green}>green</option>
+          <option value={ConsoleTheme.blue}>blue</option>
+          <option value={ConsoleTheme.mono}>mono</option>
+        </select>
+      </div>
     </div>
+  )
+}
+
+const ChromaticAberrationProvider = () => {
+  return (
+    <svg width='0' height='0'>
+      <filter id='chromaticAberration'>
+        <feColorMatrix
+          type='matrix'
+          result='red_'
+          values='4 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 1 0'
+        />
+        <feOffset in='red_' dx='.4' dy='0' result='red' />
+        <feColorMatrix
+          type='matrix'
+          in='SourceGraphic'
+          result='blue_'
+          values='0 0 0 0 0
+              0 3 0 0 0
+              0 0 10 0 0
+              0 0 0 1 0'
+        />
+        <feOffset in='blue_' dx='-1' dy='0' result='blue' />
+        <feBlend mode='screen' in='red' in2='blue' />
+      </filter>
+    </svg>
   )
 }
