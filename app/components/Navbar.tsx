@@ -5,12 +5,22 @@ import { SetStateAction, useState } from 'react'
 import { IoClose, IoMenu, IoMoon, IoSunny } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
 import { toggleColorTheme } from '../actions'
+import { createContext } from 'vm'
+import { useStore } from '../global-state'
+
+export const NavbarContext = createContext()
 
 export const Navbar = () => {
   const pathname = usePathname()
   const initialPage = pathname.split('/')[1]
   const [currentPage, setCurrentPage] = useState<string>(initialPage ?? 'about')
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState<boolean>(false)
+
+  const { isConsoleMode } = useStore()
+
+  if (isConsoleMode) {
+    return <></>
+  }
 
   return (
     <div className='font-mono'>
