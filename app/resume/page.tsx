@@ -1,10 +1,9 @@
-import Link from 'next/link'
 import { IoDownload } from 'react-icons/io5'
 
 export default function Resume() {
   return (
     <div className='mx-auto flex max-w-prose flex-col items-center gap-6 px-5 pb-20 sm:pt-10'>
-      <a href='/Resume_SamuelPotter_2024.pdf' download className='mb-2'>
+      <a href='/resume/download' download className='mb-2'>
         <div className='flex gap-2 rounded-lg bg-stone-200 px-4 py-2 dark:bg-neutral-700'>
           <IoDownload className='text-xl' />
           <p>Download PDF</p>
@@ -38,11 +37,13 @@ export default function Resume() {
       <ResumeSection title={'Publications'}>
         <div className='pl-4 font-light'>
           <p>
-            M. Hasan, C. Ozel, <b>S. Potter</b> and E. Hoque, &quot;SAPIEN: Affective
-            Virtual Agents Powered by Large Language Models,&quot; in <i>2023 11th
-            International Conference on Affective Computing and Intelligent
-            Interaction Workshops and Demos (ACIIW)</i>, Cambridge, MA, USA, 2023
-            pp. 1‐3.
+            M. Hasan, C. Ozel, <b>S. Potter</b> and E. Hoque, &quot;SAPIEN:
+            Affective Virtual Agents Powered by Large Language Models,&quot; in{' '}
+            <i>
+              2023 11th International Conference on Affective Computing and
+              Intelligent Interaction Workshops and Demos (ACIIW)
+            </i>
+            , Cambridge, MA, USA, 2023 pp. 1‐3.
           </p>
         </div>
       </ResumeSection>
