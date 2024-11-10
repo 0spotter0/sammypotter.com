@@ -31,22 +31,6 @@
     image-rendering: pixelated;
   }
 
-  .crt {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: linear-gradient(to top, #000000, #000000, #ffffff, #ffffff);
-    background-size: cover;
-    background-size: 100% 2.5px;
-
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-
   .vignette {
     background: radial-gradient(
       ellipse at center,
@@ -67,23 +51,6 @@
     }
     100% {
       top: 125vh;
-    }
-  }
-
-  .grain {
-    background:
-      repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0/2500px
-        2500px,
-      repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 60% 60%/2500px
-        2500px;
-    background-blend-mode: difference;
-    animation: grainKeyframes 0.2s infinite alternate;
-  }
-  @keyframes grainKeyframes {
-    100% {
-      background-position:
-        50% 0,
-        60% 50%;
     }
   }
 

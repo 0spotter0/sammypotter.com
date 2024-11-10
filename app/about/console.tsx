@@ -1,43 +1,102 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useStore } from '../global-state'
+import { generateSystemInfo } from './neofetch'
 
 export function Console() {
-  const [inputValue, setInputValue] = useState<string>(
-    `~ > fastfetch
-                                  sammypotter@dhcp-00-0-000-00
-                 ,xNMM.           ----------------------------
-               .OMMMMo            OS: macOS Sequoia 15.0 arm64
-               lMM"               Host: MacBook Air (M2, 2022)
-     .;loddo:.  .olloddol;.       Kernel: Darwin 24.0.0
-   cKMMMMMMMMMMNWMMMMMMMMMM0:     Uptime: 7 days, 8 hours, 46 mins
- .KMMMMMMMMMMMMMMMMMMMMMMMWd.     Packages: 227 (brew), 62 (brew-cask)
- XMMMMMMMMMMMMMMMMMMMMMMMX.       Shell: zsh 5.9
-;MMMMMMMMMMMMMMMMMMMMMMMM:        Display (Color LCD): 2940x1912 @ 60 Hz (as 1470x956) in 14″ ]
-:MMMMMMMMMMMMMMMMMMMMMMMM:        DE: Aqua
-.MMMMMMMMMMMMMMMMMMMMMMMMX.       WM: Quartz Compositor
- kMMMMMMMMMMMMMMMMMMMMMMMMWd.     WM Theme: Multicolor (Dark)
- 'XMMMMMMMMMMMMMMMMMMMMMMMMMMk    Font: .AppleSystemUIFont [System], Helvetica [User]
-  'XMMMMMMMMMMMMMMMMMMMMMMMMK.    Cursor: Fill - Black, Outline - White (32px)
-    kMMMMMMMMMMMMMMMMMMMMMMd      Terminal: iTerm 3.5.5
-     ;KMMMMMMMWXXWMMMMMMMk.       Terminal Font: MesloLGS-NF-Regular (11.5pt)
-       "cooc*"    "*coo'"         CPU: Apple M2 (8) @ 3.50 GHz
-                                  GPU: Apple M2 (10) @ 1.40 GHz [Integrated]
-                                  Memory: 17.17 GiB / 24.00 GiB (72%)
-                                  Swap: 1.07 GiB / 2.00 GiB (54%)
-                                  Disk (/): 432.09 GiB / 460.43 GiB (94%) - apfs [Read-only]
-                                  Local IP (en0): 00.0.000.00/00
-                                  Battery: 68% [AC connected, Charging]
-                                  Power Adapter: 67W USB-C Power Adapter
-                                  Locale: en_US.UTF-8
-~ > ls -la
-.
-..
-start.sh
-weather.sh
-Resume.txt
-> █
+  const { isConsoleMode, updateConsoleMode } = useStore()
+
+  const [consoleContents, setConsoleContents] = useState<string[]>([])
+  const [isKeyDown, setIsKeyDown] = useState<boolean>(false)
+  const [command, setCommand] = useState<string>('')
+  const [currentDirectory, setCurrentDirectory] = useState<string>('~')
+  const consoleContentContainerRef = useRef<HTMLDivElement>(null)
+  const [commandHistory, setCommandHistory] = useState<string[]>([])
+  const [historyIndex, setHistoryIndex] = useState<number>(-1)
+  const [isAwaitingCommand, setIsAwaitingCommand] = useState<boolean>(false)
+
+  type Directory = {
+    name: string
+    files: string[] | []
+    dirs: Directory[] | []
+  }
+
+  const dirs: Directory = {
+    name: '~',
+    files: ['back.sh', 'weather', 'README'],
+    dirs: [
+      {
+        name: 'folder1',
+        files: ['file1', 'file2'],
+        dirs: [{ name: 'subdir1', files: ['yo', 'zoe'], dirs: [] }],
+      },
+      {
+        name: 'folder2',
+        files: ['file3', 'file4'],
+        dirs: [{ name: 'subdir2', files: ['hi', 'bye'], dirs: [] }],
+      },
+    ],
+  }
+
+  // prettier-ignore
+  const readmeFile =
 `
-  )
-  const [isScanlinesEnabled, setIsScanlinesEnabled] = useState<boolean>(true)
+Commands:
+
+color <red | amber | green | blue | mono>
+Change the terminal color
+
+scan <on | off>
+Enable/disable scanlines
+
+grain <on | off>
+Enable/disable grain
+
+chroma <on | off>
+Enable/disable chromatic aberration
+
+exit
+Go back
+`
+
+  function generateTree(dir: Directory, prefix = '', topLabel = '') {
+    let treeOutput = `${topLabel}\n`
+
+    const totalItems = dir.files.length + dir.dirs.length
+
+    dir.files.forEach((file: string, index: number) => {
+      const isLastFile = index === totalItems - 1 && dir.dirs.length === 0
+      treeOutput += `${prefix}${isLastFile ? '└── ' : '├── '}${file}\n`
+    })
+
+    dir.dirs.forEach((subdir: Directory, index: number) => {
+      const isLastDir = index === dir.dirs.length - 1
+      const newPrefix = prefix + (isLastDir ? '    ' : '│   ')
+      treeOutput += `${prefix}${isLastDir ? '└── ' : '├── '}${subdir.name}`
+      treeOutput += generateTree(subdir, newPrefix)
+    })
+
+    return treeOutput
+  }
+
+  const addConsoleContent = (newContent: string) => {
+    setConsoleContents((prevContents) => [...prevContents, newContent])
+  }
+
+  const clearConsoleContents = () => {
+    setConsoleContents([])
+  }
+
+  const addCommandHistory = (newCommand: string) => {
+    if (
+      newCommand === '' ||
+      newCommand === commandHistory[commandHistory.length - 1]
+    ) {
+      return
+    }
+    setCommandHistory((prevCommands) => [...prevCommands, newCommand])
+  }
+
+  const [isScanlinesEnabled, setIsScanlinesEnabled] = useState<boolean>(false)
   const [isGrainEnabled, setIsGrainEnabled] = useState<boolean>(false)
   const [isChromaticAberrationEnabled, setIsChromaticAberrationEnabled] =
     useState<boolean>(true)
@@ -50,6 +109,10 @@ Resume.txt
     mono,
   }
 
+  function getTheme(theme: string): ConsoleTheme | undefined {
+    return ConsoleTheme[theme as keyof typeof ConsoleTheme]
+  }
+
   const colors: Record<ConsoleTheme, string> = {
     [ConsoleTheme.red]: 'bg-red-500',
     [ConsoleTheme.amber]: 'bg-orange-500',
@@ -60,83 +123,259 @@ Resume.txt
 
   const [themeColor, setThemeColor] = useState(ConsoleTheme.green)
 
+  function processCommand(command: string) {
+    const args = command.split(/\s+/).filter((arg) => arg !== '')
+    if (args.length === 0) {
+      addConsoleContent('')
+      return
+    }
+    addCommandHistory(command)
+    addConsoleContent(`${currentDirectory} > ${command}`)
+    switch (args[0]) {
+      case 'clear':
+        clearConsoleContents()
+        break
+      case 'ls':
+        let output = '.\n..'
+        dirs.files.forEach((file) => {
+          output += `\n${file}`
+        })
+        dirs.dirs.forEach((subdir) => {
+          output += `\n${subdir.name}/`
+        })
+        addConsoleContent(output)
+        break
+      case 'exit':
+      case './back.sh':
+        updateConsoleMode(false)
+        break
+      case 'cat':
+        if (args[1] == 'README') {
+          addConsoleContent(readmeFile)
+        } else
+          addConsoleContent(
+            `cat: ${args[1] ? args[1] + ': ' : ''}No such file or directory`
+          )
+        break
+      case 'scan':
+        switch (args[1]) {
+          case 'on':
+            setIsScanlinesEnabled(true)
+            break
+          case 'off':
+            setIsScanlinesEnabled(false)
+            break
+          default:
+            addConsoleContent('Error: invalid argument')
+        }
+        break
+      case 'chroma':
+        switch (args[1]) {
+          case 'on':
+            setIsChromaticAberrationEnabled(true)
+            break
+          case 'off':
+            setIsChromaticAberrationEnabled(false)
+            break
+          default:
+            addConsoleContent('Error: invalid argument')
+        }
+        break
+      case 'vim':
+        addConsoleContent('too hard :(')
+        break
+      case 'neofetch':
+        setIsAwaitingCommand(true)
+        generateSystemInfo().then((result) => {
+          addConsoleContent(result)
+          setIsAwaitingCommand(false)
+        })
+        break
+      case 'grain':
+        switch (args[1]) {
+          case 'on':
+            setIsGrainEnabled(true)
+            break
+          case 'off':
+            setIsGrainEnabled(false)
+            break
+          default:
+            addConsoleContent('Error: invalid argument')
+        }
+        break
+      case 'color':
+        let theme = getTheme(args[1])
+        if (theme === undefined) {
+          addConsoleContent('Error: invalid argument')
+          break
+        }
+        setThemeColor(theme)
+        break
+      case 'tree':
+        addConsoleContent(generateTree(dirs, '', '.'))
+        break
+      case 'whoami':
+        setIsAwaitingCommand(true)
+        fetch('https://ipwhois.app/json/', {
+          cache: 'no-store',
+        })
+          .then((response) => response.json())
+          .then((data) =>
+            addConsoleContent(`${data.ip} (${data.region}, ${data.country})`)
+          )
+          .catch(() => addConsoleContent('Network error'))
+          .finally(() => {
+            setIsAwaitingCommand(false)
+          })
+        break
+      case 'sleep':
+        let seconds = Number(args[1])
+        if (!seconds && seconds !== 0) {
+          addConsoleContent('Error: invalid argument')
+          break
+        }
+        setIsAwaitingCommand(true)
+        setTimeout(() => {
+          addConsoleContent('')
+          setIsAwaitingCommand(false)
+        }, seconds * 1000)
+        break
+      default:
+        addConsoleContent(`command not found: ${command}`)
+    }
+  }
+
+  function handleKeydown(e: KeyboardEvent) {
+    if (isAwaitingCommand) {
+      return
+    }
+    setIsKeyDown(true)
+    const key = e.key
+    switch (key) {
+      case 'Backspace':
+        setCommand(command.length === 0 ? '' : command.slice(0, -1))
+        setHistoryIndex(-1)
+        break
+      case 'Enter':
+        processCommand(command)
+        setCommand('')
+        setHistoryIndex(-1)
+        break
+      case ' ':
+        setCommand(command + ' ')
+        setHistoryIndex(-1)
+        break
+      case 'ArrowUp':
+        const newHistoryIndexUp = historyIndex + 1
+        if (newHistoryIndexUp > commandHistory.length - 1) {
+          break
+        }
+        setHistoryIndex(newHistoryIndexUp)
+        setCommand(
+          commandHistory[commandHistory.length - 1 - newHistoryIndexUp]
+        )
+        break
+      case 'ArrowDown':
+        const newHistoryIndexDown = historyIndex - 1
+        if (newHistoryIndexDown < 0) {
+          if (command !== '') {
+            setCommand('')
+            setHistoryIndex(-1)
+          }
+          break
+        }
+        setHistoryIndex(newHistoryIndexDown)
+        setCommand(
+          commandHistory[commandHistory.length - 1 - newHistoryIndexDown]
+        )
+        break
+      default:
+        if (key.length !== 1) {
+          return
+        }
+        setHistoryIndex(-1)
+        setCommand(command + key)
+    }
+  }
+
+  useEffect(() => {
+    if (consoleContentContainerRef?.current) {
+      consoleContentContainerRef.current!.scrollTop =
+        consoleContentContainerRef.current!.scrollHeight
+    }
+  }, [consoleContents, command])
+
+  function handleKeyup() {
+    if (isAwaitingCommand) {
+      return
+    }
+
+    setIsKeyDown(false)
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeydown)
+    window.addEventListener('keyup', handleKeyup)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeydown)
+      window.removeEventListener('keyup', handleKeyup)
+    }
+  })
+
   return (
     <div className='relative h-svh w-full overflow-hidden bg-black sm:-mt-24'>
       <div
-        className={`relative flex h-full w-full items-center justify-center overflow-hidden text-nowrap bg-black`}
-        style={{ fontFamily: 'VCR OSD Mono' }}
+        ref={consoleContentContainerRef}
+        className={`relative flex h-[calc(100%-1rem)] w-full select-none items-center justify-center overflow-y-scroll text-nowrap bg-black font-mono scrollbar scrollbar-track-transparent scrollbar-thumb-transparent`}
+        style={{ fontFamily: '' }}
       >
         <div
           className={`absolute inset-0 h-full w-full rounded-sm p-6 text-white opacity-60 blur-[4px]`}
         >
-          <p className='whitespace-pre leading-5'>{inputValue}</p>
+          <ConsoleContent
+            consoleContents={consoleContents}
+            currentDirectory={currentDirectory}
+            command={command}
+            isKeyDown={isKeyDown}
+            isAwaitingCommand={isAwaitingCommand}
+          />
         </div>
         <div
           className={`${isChromaticAberrationEnabled ? 'chromatic-aberration' : ''} absolute inset-0 p-6 text-white`}
         >
-          <p className='whitespace-pre leading-5'>{inputValue}</p>
+          <ConsoleContent
+            consoleContents={consoleContents}
+            currentDirectory={currentDirectory}
+            command={command}
+            isKeyDown={isKeyDown}
+            isAwaitingCommand={isAwaitingCommand}
+          />
         </div>
       </div>
-      {isScanlinesEnabled ? (
+      {isGrainEnabled && (
+        <div className='pointer-events-none absolute left-0 top-0 h-full w-full bg-[url("/noise.gif")] bg-[length:400px] opacity-[5%]' />
+      )}
+      <div className='pointer-events-none absolute left-0 top-0 h-full w-full bg-white opacity-[12%]' />
+      {isScanlinesEnabled && (
         <>
-          <div className='crt pointer-events-none absolute left-0 top-0 h-full w-full opacity-[15%]' />
+          <div className='image-pixelated pointer-events-none absolute left-0 top-0 h-full w-full bg-[url("/stripe-overlay.png")] bg-[length:128px_250px] opacity-50 mix-blend-multiply' />
           <div
             className={`scanline pointer-events-none absolute left-0 w-full bg-gradient-to-b from-black to-white opacity-[5%] mix-blend-lighten`}
           />
         </>
-      ) : (
-        <div className='pointer-events-none absolute left-0 top-0 h-full w-full bg-white opacity-[12%]' />
-      )}
-      {isGrainEnabled && (
-        <div className='grain pointer-events-none absolute left-0 top-0 h-full w-full opacity-[8%]' />
       )}
       <div
-        className={`pointer-events-none absolute left-0 top-0 h-full w-full ${colors[themeColor]} mix-blend-multiply`}
+        className={`pointer-events-none absolute left-0 top-0 h-full w-full transition-colors duration-500 ${colors[themeColor]} mix-blend-multiply`}
       />
       <div className='vignette pointer-events-none absolute left-0 top-0 h-full w-full' />
       <div className='pointer-events-none absolute left-0 top-0 h-full w-full border-[12px] border-black ring-8 ring-black blur-[2px]' />
-      <ChromaticAberrationProvider />
-      <div className='absolute bottom-2 flex w-full justify-center gap-4'>
-        <button
-          className={`rounded border-2 border-neutral-500 bg-neutral-500 px-2 text-white ${isScanlinesEnabled ? 'bg-neutral-400' : 'bg-neutral-800 '}`}
-          onClick={() => setIsScanlinesEnabled(!isScanlinesEnabled)}
-        >
-          scan
-        </button>
-        <button
-          className={`rounded border-2 border-neutral-500 bg-neutral-500 px-2 text-white ${isChromaticAberrationEnabled ? 'bg-neutral-400' : 'bg-neutral-800 '}`}
-          onClick={() =>
-            setIsChromaticAberrationEnabled(!isChromaticAberrationEnabled)
-          }
-        >
-          chrom
-        </button>
-        <button
-          className={`rounded border-2 border-neutral-500 bg-neutral-500 px-2 text-white ${isGrainEnabled ? 'bg-neutral-400' : 'bg-neutral-800 '}`}
-          onClick={() => setIsGrainEnabled(!isGrainEnabled)}
-        >
-          grain
-        </button>
-        <select
-          id='theme-select'
-          className='rounded bg-neutral-500 px-2 py-1 text-white'
-          value={themeColor}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            setThemeColor(Number(e.target.value) as ConsoleTheme)
-          }}
-        >
-          <option value={ConsoleTheme.red}>red</option>
-          <option value={ConsoleTheme.amber}>amber</option>
-          <option value={ConsoleTheme.green}>green</option>
-          <option value={ConsoleTheme.blue}>blue</option>
-          <option value={ConsoleTheme.mono}>mono</option>
-        </select>
-      </div>
+      <FilterProvider />
     </div>
   )
 }
 
-const ChromaticAberrationProvider = () => {
+const FilterProvider = () => {
   return (
     <svg width='0' height='0'>
       <filter id='chromaticAberration'>
@@ -148,7 +387,7 @@ const ChromaticAberrationProvider = () => {
               0 0 0 0 0
               0 0 0 1 0'
         />
-        <feOffset in='red_' dx='.4' dy='0' result='red' />
+        <feOffset in='red_' dx='.7' dy='0' result='red' />
         <feColorMatrix
           type='matrix'
           in='SourceGraphic'
@@ -158,9 +397,44 @@ const ChromaticAberrationProvider = () => {
               0 0 10 0 0
               0 0 0 1 0'
         />
-        <feOffset in='blue_' dx='-1' dy='0' result='blue' />
+        <feOffset in='blue_' dx='-.7' dy='0' result='blue' />
         <feBlend mode='screen' in='red' in2='blue' />
       </filter>
     </svg>
   )
 }
+
+interface ConsoleContentProps {
+  consoleContents: string[]
+  currentDirectory: string
+  command: string
+  isKeyDown: boolean
+  isAwaitingCommand: boolean
+}
+
+const ConsoleContent = ({
+  consoleContents,
+  currentDirectory,
+  command,
+  isKeyDown,
+  isAwaitingCommand,
+}: ConsoleContentProps) => (
+  <>
+    {consoleContents.map((content: string, index: number) => (
+      <p key={index} className='whitespace-pre text-wrap leading-5'>
+        {content}
+      </p>
+    ))}
+    {isAwaitingCommand ? (
+      <div className={`h-[2ch] w-[1ch] bg-white`} />
+    ) : (
+      <div className='flex items-center leading-5'>
+        <p className='mr-[1ch]'>{`${currentDirectory} >`}</p>
+        <p className='whitespace-pre'>{command}</p>
+        <div
+          className={`h-[2ch] w-[1ch] ${isKeyDown ? '' : 'animate-blink'} bg-white`}
+        />
+      </div>
+    )}
+  </>
+)
