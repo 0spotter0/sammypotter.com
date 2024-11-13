@@ -3,15 +3,15 @@ import { IoLinkOutline } from 'react-icons/io5'
 
 export default function Research() {
   const articles: Article[] = [
-//    {
-//      title: 'Hi5 : 2D Hand Pose Estimation with Zero Human Annotation',
-//      authors:
-//        'Cengiz Ozel, Alexander Martin, Sammy Potter, Nina Long, Sangwu Lee, Tariq Adnan, Amir Zadeh, Ehsan Hoque',
-//      conference: '2024 Conference on Neural Information Processing Systems',
-//      doi: 'cool value',
-//      link: 'https://ieeexplore.ieee.org/document/10388188',
-//      date: '1 May 2024',
-//    },
+    {
+      title: 'Hi5: 2D Hand Pose Estimation with Zero Human Annotation',
+      authors:
+        'Masum Hasan, Cengiz Ozel, Nina Long, Alexander Martin, Sammy Potter, Tariq Adnan, Sangwu Lee, Amir Zadeh, Ehsan Hoque',
+      conference: '2024 Conference on Neural Information Processing Systems',
+      doi: 'doi: 10.48550/arXiv.2406.03599',
+      link: 'https://arxiv.org/abs/2406.03599',
+      date: '5 June 2024',
+    },
     {
       title:
         'SAPIEN: Affective Virtual Agents Powered by Large Language Models',
@@ -25,7 +25,7 @@ export default function Research() {
   ]
 
   return (
-    <div className='mx-auto w-fit pt-10 px-5 sm:pt-16'>
+    <div className='mx-auto w-fit px-5 pt-10 sm:pt-16'>
       <div className='flex w-full flex-col gap-14'>
         {articles.map((article) => (
           <ResearchArticle key={article.doi} article={article} />
@@ -53,13 +53,11 @@ const ResearchArticle = (props: { article: Article }) => {
       <p className='text-secondary pb-2 text-lg leading-5'>
         {props.article.authors}
       </p>
-      <p className='text-tertiary font-light text-md pb-3 leading-5'>
+      <p className='text-tertiary text-md pb-3 font-light leading-5'>
         {props.article.conference}
       </p>
-      <div className='flex gap-4 items-center text-secondary'>
-        <p className='text-md font-mono'>
-          {props.article.date}
-        </p>
+      <div className='text-secondary flex items-center gap-4'>
+        <p className='text-md font-mono'>{props.article.date}</p>
         <p>|</p>
         <Link
           className='text-md flex w-fit items-center gap-2 font-mono underline'
