@@ -25,6 +25,7 @@ export const Navbar = () => {
       <div>
         <div className='flex w-full items-center justify-end p-5 sm:hidden'>
           <button
+            name='open menu'
             onClick={() => {
               setIsBurgerMenuOpen(true)
             }}
@@ -37,6 +38,7 @@ export const Navbar = () => {
         >
           <div className='flex w-full justify-end'>
             <button
+              name='close menu'
               onClick={() => {
                 setIsBurgerMenuOpen(false)
               }}
@@ -88,6 +90,7 @@ const HeaderLinks = (props: {
       </div>
       <div className='flex w-fit items-center justify-center pt-10 sm:justify-end sm:pt-0'>
         <button
+          name='toggle theme'
           onClick={() => {
             toggleColorTheme()
           }}
