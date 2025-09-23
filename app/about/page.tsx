@@ -35,7 +35,7 @@ export default function About() {
             width={400}
             height={400}
             alt='headshot image'
-            className='object-cover dark:invert dark:opacity-75'
+            className='dark:invert dark:opacity-75'
           />
           <p className='text-secondary pt-1 font-mono text-xs'>
             special thanks to Cengiz Ozel

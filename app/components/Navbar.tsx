@@ -11,9 +11,21 @@ export const Navbar = () => {
   const [currentPage, setCurrentPage] = useState<string>(initialPage ?? 'about')
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState<boolean>(false)
 
+  useEffect(() => {
+    if (isBurgerMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isBurgerMenuOpen])
+
   return (
     <div className='font-mono'>
-      <div className='bg-main fixed left-0 top-0 hidden w-full transition-colors duration-200 ease-in-out sm:block'>
+      <div className='bg-main fixed top-0 left-0 hidden w-full transition-colors duration-200 ease-in-out sm:block'>
         <HeaderLinks
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
@@ -33,7 +45,7 @@ export const Navbar = () => {
           </button>
         </div>
         <div
-          className={`bg-main visible absolute left-0 top-0 w-full overflow-hidden sm:hidden ${isBurgerMenuOpen ? 'h-full' : 'h-0'} transition-all duration-500 ease-in-out`}
+          className={`bg-main visible fixed top-0 left-0 z-50 w-full overflow-hidden sm:hidden ${isBurgerMenuOpen ? 'h-full' : 'h-0'} transition-all duration-500 ease-in-out`}
         >
           <div className='flex w-full justify-end'>
             <button
@@ -68,8 +80,11 @@ const HeaderLinks = (props: {
 }) => {
   const handlePageChange = (page: string) => {
     props.setCurrentPage(page)
-    props.setIsBurgerMenuOpen(false)
   }
+
+  useEffect(() => {
+    props.setIsBurgerMenuOpen(false)
+  }, [props.currentPage])
 
   return (
     <div
