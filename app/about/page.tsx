@@ -46,7 +46,7 @@ export default function About() {
             href='https://github.com/0spotter0'
             rel='noopener noreferrer'
             target='_blank'
-            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
+            className='flex flex-col items-center gap-3 underline sm:flex-row sm:flex-row-reverse'
           >
             <IoLogoGithub className='text-3xl' />
             <p className='font-mono font-light'>github</p>
@@ -55,7 +55,7 @@ export default function About() {
             href='https://scholar.google.com/citations?user=G8Cp2AMAAAAJ'
             rel='noopener noreferrer'
             target='_blank'
-            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
+            className='flex flex-col items-center gap-3 underline sm:flex-row sm:flex-row-reverse'
           >
             <IoSchool className='text-3xl' />
             <p className='font-mono font-light'>
@@ -67,7 +67,7 @@ export default function About() {
             href='https://www.linkedin.com/in/pottersammy/'
             rel='noopener noreferrer'
             target='_blank'
-            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
+            className='flex flex-col items-center gap-3 underline sm:flex-row sm:flex-row-reverse'
           >
             <IoLogoLinkedin className='text-3xl' />
             <p className='font-mono font-light'>linkedin</p>
@@ -76,7 +76,7 @@ export default function About() {
             href='mailto:s.potter@rochester.edu'
             rel='noopener noreferrer'
             target='_blank'
-            className='flex flex-col items-center gap-3 underline transition-transform duration-150 sm:flex-row sm:flex-row-reverse'
+            className='flex flex-col items-center gap-3 underline sm:flex-row sm:flex-row-reverse'
           >
             <IoMail className='text-3xl' />
             <p className='font-mono font-light'>email</p>
@@ -114,7 +114,7 @@ export default function About() {
 
 const SkillPill = (props: { name: string }) => {
   return (
-    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 font-mono transition-transform duration-150 hover:scale-105'>
+    <p className='text-primary rounded-full border border-stone-300 px-4 py-1 pb-1 font-mono hover:scale-105'>
       {props.name}
     </p>
   )

@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className='text-primary bg-main overflow-hidden overflow-y-auto font-sans filter-none transition-colors duration-200'>
+      <body className='text-primary bg-main overflow-hidden overflow-y-auto font-sans filter-none'>
         <Navbar />
         <div className='sm:mt-24'>{children}</div>
       </body>

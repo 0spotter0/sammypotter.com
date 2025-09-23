@@ -5,6 +5,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+.burger-slide-transition {
+  transition: height 500ms ease-in-out;
+}
+
 @utility text-primary {
   @apply text-neutral-700 dark:text-stone-300;
 }
