@@ -2,9 +2,8 @@
 
 import Link from 'next/link'
 import { SetStateAction, useState } from 'react'
-import { IoClose, IoMenu, IoMoon, IoSunny } from 'react-icons/io5'
+import { IoClose, IoMenu } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
-import { toggleColorTheme } from '../actions'
 
 export const Navbar = () => {
   const pathname = usePathname()
@@ -87,18 +86,6 @@ const HeaderLinks = (props: {
             {page}
           </Link>
         ))}
-      </div>
-      <div className='flex w-fit items-center justify-center pt-10 sm:justify-end sm:pt-0'>
-        <button
-          name='toggle theme'
-          onClick={() => {
-            toggleColorTheme()
-          }}
-          className='flex justify-end text-2xl'
-        >
-          <IoSunny className='dark:hidden' />
-          <IoMoon className='hidden dark:block' />
-        </button>
       </div>
     </div>
   )
