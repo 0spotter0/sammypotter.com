@@ -25,7 +25,7 @@ export default function Research() {
   ]
 
   return (
-    <div className='mx-auto w-fit px-5 pt-10 sm:pt-16'>
+    <div className='mx-auto w-fit px-5 pb-20 pt-10 sm:pt-16'>
       <div className='flex w-full flex-col gap-14'>
         {articles.map((article) => (
           <ResearchArticle key={article.doi} article={article} />
