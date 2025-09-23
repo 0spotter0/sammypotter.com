@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { SetStateAction, useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { IoClose, IoMenu } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
 
