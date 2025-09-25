@@ -5,10 +5,18 @@ import { SetStateAction, useEffect, useState } from 'react'
 import { IoClose, IoMenu } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
 
+type PageName = 'resume' | 'research' | 'about'
+
+const availablePages = ['resume', 'research', 'about'] satisfies PageName[]
+
+const isValidPageName = (page: string): page is PageName => {
+  return availablePages.includes(page as PageName)
+}
+
 export const Navbar = () => {
   const pathname = usePathname()
-  const initialPage = pathname.split('/')[1]
-  const [currentPage, setCurrentPage] = useState<string>(initialPage ?? 'about')
+  const initialPage = isValidPageName(pathname) ? pathname : 'resume'
+  const [currentPage, setCurrentPage] = useState<PageName>(initialPage)
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState<boolean>(false)
 
   useEffect(() => {
@@ -66,21 +74,18 @@ export const Navbar = () => {
   )
 }
 
-const availablePages = ['resume', 'research', 'about']
-
 const HeaderLinks = ({
   currentPage,
   setCurrentPage,
   isBurger,
   setIsBurgerMenuOpen,
 }: {
-  currentPage: string
-  setCurrentPage: React.Dispatch<React.SetStateAction<string>>
+  currentPage: PageName
+  setCurrentPage: React.Dispatch<React.SetStateAction<PageName>>
   isBurger: boolean
   setIsBurgerMenuOpen: React.Dispatch<SetStateAction<boolean>>
 }) => {
-  const handlePageChange = (page: string) => {
-    console.log('hi', page, currentPage)
+  const handlePageChange = (page: PageName) => {
     if (currentPage === page) {
       setIsBurgerMenuOpen(false)
       return
