@@ -68,28 +68,33 @@ export const Navbar = () => {
 
 const availablePages = ['resume', 'research', 'about']
 
-const HeaderLinks = (props: {
+const HeaderLinks = ({
+  currentPage,
+  setCurrentPage,
+  isBurger,
+  setIsBurgerMenuOpen,
+}: {
   currentPage: string
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>
   isBurger: boolean
   setIsBurgerMenuOpen: React.Dispatch<SetStateAction<boolean>>
 }) => {
   const handlePageChange = (page: string) => {
-    console.log('hi', page, props.currentPage)
-    if (props.currentPage === page) {
-      props.setIsBurgerMenuOpen(false)
+    console.log('hi', page, currentPage)
+    if (currentPage === page) {
+      setIsBurgerMenuOpen(false)
       return
     }
-    props.setCurrentPage(page)
+    setCurrentPage(page)
   }
 
   useEffect(() => {
-    props.setIsBurgerMenuOpen(false)
-  }, [props.currentPage])
+    setIsBurgerMenuOpen(false)
+  }, [currentPage, setIsBurgerMenuOpen])
 
   return (
     <div
-      className={`flex w-full items-center p-[1.7rem] text-xl font-normal sm:justify-between ${props.isBurger && 'flex-col gap-20'}`}
+      className={`flex w-full items-center p-[1.7rem] text-xl font-normal sm:justify-between ${isBurger && 'flex-col gap-20'}`}
     >
       <div className='flex w-fit flex-col gap-4 sm:flex-row'>
         {availablePages.map((page) => (
@@ -97,7 +102,7 @@ const HeaderLinks = (props: {
             key={page}
             onClick={() => handlePageChange(page)}
             href={`/${page}`}
-            className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center ${props.currentPage === page && 'bg-stone-200 dark:bg-neutral-700'}`}
+            className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center ${currentPage === page && 'bg-stone-200 dark:bg-neutral-700'}`}
           >
             {page}
           </Link>

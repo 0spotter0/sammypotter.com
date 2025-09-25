@@ -25,7 +25,7 @@ export default function Research() {
   ]
 
   return (
-    <div className='mx-auto w-fit px-5 pb-20 pt-10 sm:pt-16'>
+    <div className='mx-auto w-fit px-5 pt-10 pb-20 sm:pt-16'>
       <div className='flex w-full flex-col gap-14'>
         {articles.map((article) => (
           <ResearchArticle key={article.doi} article={article} />
@@ -44,24 +44,22 @@ type Article = {
   date: string
 }
 
-const ResearchArticle = (props: { article: Article }) => {
+const ResearchArticle = ({ article }: { article: Article }) => {
   return (
     <div className='max-w-[75ch]'>
-      <h2 className='text-primary pb-4 text-xl font-bold leading-5 dark:font-medium'>
-        {props.article.title}
+      <h2 className='text-primary pb-4 text-xl leading-5 font-bold dark:font-medium'>
+        {article.title}
       </h2>
-      <p className='text-secondary pb-2 text-lg leading-5'>
-        {props.article.authors}
-      </p>
-      <p className='text-tertiary text-md pb-3 font-light leading-5'>
-        {props.article.conference}
+      <p className='text-secondary pb-2 text-lg leading-5'>{article.authors}</p>
+      <p className='text-tertiary text-md pb-3 leading-5 font-light'>
+        {article.conference}
       </p>
       <div className='text-secondary flex items-center gap-4'>
-        <p className='text-md font-mono'>{props.article.date}</p>
+        <p className='text-md font-mono'>{article.date}</p>
         <p>|</p>
         <Link
           className='text-md flex w-fit items-center gap-2 font-mono underline'
-          href={props.article.link}
+          href={article.link}
           rel='noopener noreferrer'
           target='_blank'
         >

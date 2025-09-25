@@ -169,20 +169,29 @@ export default function Resume() {
   )
 }
 
-const ResumeSection = (props: {
+const ResumeSection = ({
+  title,
+  children,
+}: {
   title: string
   children?: React.ReactNode
 }) => {
   return (
     <div className='w-full'>
-      <h2 className='text-lg font-semibold'>{props.title}</h2>
+      <h2 className='text-lg font-semibold'>{title}</h2>
       <hr className='mb-4 h-px border-0 bg-stone-200 last:hidden dark:bg-neutral-600' />
-      <div className='flex flex-col gap-5'>{props.children}</div>
+      <div className='flex flex-col gap-5'>{children}</div>
     </div>
   )
 }
 
-const ResumeExperienceItem = (props: {
+const ResumeExperienceItem = ({
+  title,
+  subtitle,
+  location,
+  date,
+  children,
+}: {
   title: string
   subtitle?: string
   location: string
@@ -192,14 +201,14 @@ const ResumeExperienceItem = (props: {
   return (
     <div>
       <div className='mb-1 flex justify-between font-medium'>
-        <h3>{props.title}</h3>
-        <p className='hidden sm:block'>{props.location}</p>
+        <h3>{title}</h3>
+        <p className='hidden sm:block'>{location}</p>
       </div>
       <div className='text-secondary mb-1 mb-2 flex justify-between font-light'>
-        <h3>{props.subtitle}</h3>
-        <p className='hidden sm:block'>{props.date}</p>
+        <h3>{subtitle}</h3>
+        <p className='hidden sm:block'>{date}</p>
       </div>
-      <ul className='ml-8 list-disc font-light'>{props.children}</ul>
+      <ul className='ml-8 list-disc font-light'>{children}</ul>
     </div>
   )
 }
