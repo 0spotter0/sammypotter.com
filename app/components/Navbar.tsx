@@ -1,22 +1,14 @@
 'use client'
-
 import Link from 'next/link'
 import { SetStateAction, useEffect, useState } from 'react'
 import { IoClose, IoLogoGithub, IoMenu } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
 
 type PageName = 'resume' | 'research' | 'about'
-
 const availablePages = ['resume', 'research', 'about'] satisfies PageName[]
-
-const isValidPageName = (page: string): page is PageName => {
-  return availablePages.includes(page as PageName)
-}
 
 export const Navbar = () => {
   const pathname = usePathname()
-  const initialPage = isValidPageName(pathname) ? pathname : 'resume'
-  const [currentPage, setCurrentPage] = useState<PageName>(initialPage)
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState<boolean>(false)
 
   useEffect(() => {
@@ -32,8 +24,7 @@ export const Navbar = () => {
       <div className='bg-main fixed top-0 left-0 hidden w-full items-center justify-between sm:flex'>
         <HeaderLinks
           isBurger={false}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          pathname={pathname}
           setIsBurgerMenuOpen={setIsBurgerMenuOpen}
         />
         <Link
@@ -72,8 +63,7 @@ export const Navbar = () => {
           </div>
           <HeaderLinks
             isBurger={true}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
+            pathname={pathname}
             setIsBurgerMenuOpen={setIsBurgerMenuOpen}
           />
         </div>
@@ -83,43 +73,32 @@ export const Navbar = () => {
 }
 
 const HeaderLinks = ({
-  currentPage,
-  setCurrentPage,
+  pathname,
   isBurger,
   setIsBurgerMenuOpen,
 }: {
-  currentPage: PageName
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageName>>
+  pathname: string
   isBurger: boolean
   setIsBurgerMenuOpen: React.Dispatch<SetStateAction<boolean>>
 }) => {
-  const handlePageChange = (page: PageName) => {
-    if (currentPage === page) {
-      setIsBurgerMenuOpen(false)
-      return
-    }
-    setCurrentPage(page)
-  }
-
-  useEffect(() => {
-    setIsBurgerMenuOpen(false)
-  }, [currentPage, setIsBurgerMenuOpen])
-
   return (
     <div
       className={`flex w-full items-center p-[1.7rem] text-xl font-normal sm:justify-between ${isBurger && 'flex-col gap-20'}`}
     >
       <div className='flex w-fit flex-col gap-4 sm:flex-row'>
-        {availablePages.map((page) => (
-          <Link
-            key={page}
-            onClick={() => handlePageChange(page)}
-            href={`/${page}`}
-            className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center ${currentPage === page && 'bg-stone-200 dark:bg-neutral-700'}`}
-          >
-            {page}
-          </Link>
-        ))}
+        {availablePages.map((page) => {
+          const isActive = pathname.includes(page)
+          return (
+            <Link
+              key={page}
+              onClick={() => setIsBurgerMenuOpen(false)}
+              href={`/${page}`}
+              className={`flex w-32 items-center justify-center rounded-md px-4 py-2 text-center ${isActive && 'bg-stone-200 dark:bg-neutral-700'}`}
+            >
+              {page}
+            </Link>
+          )
+        })}
       </div>
     </div>
   )
