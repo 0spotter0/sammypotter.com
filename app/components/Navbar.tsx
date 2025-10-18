@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { SetStateAction, useEffect, useState } from 'react'
-import { IoClose, IoMenu } from 'react-icons/io5'
+import { IoClose, IoLogoGithub, IoMenu } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
 
 type PageName = 'resume' | 'research' | 'about'
@@ -29,13 +29,21 @@ export const Navbar = () => {
 
   return (
     <div className='font-mono'>
-      <div className='bg-main fixed top-0 left-0 hidden w-full sm:block'>
+      <div className='bg-main fixed top-0 left-0 hidden w-full items-center justify-between sm:flex'>
         <HeaderLinks
+          isBurger={false}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          isBurger={false}
           setIsBurgerMenuOpen={setIsBurgerMenuOpen}
         />
+        <Link
+          href='https://github.com/0spotter0/sammypotter.com'
+          rel='noopener noreferrer'
+          target='_blank'
+          className='px-10'
+        >
+          <IoLogoGithub className='text-3xl' />
+        </Link>
       </div>
       <div>
         <div className='flex w-full items-center justify-end p-5 sm:hidden'>
@@ -63,8 +71,8 @@ export const Navbar = () => {
             </button>
           </div>
           <HeaderLinks
-            currentPage={currentPage}
             isBurger={true}
+            currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             setIsBurgerMenuOpen={setIsBurgerMenuOpen}
           />
