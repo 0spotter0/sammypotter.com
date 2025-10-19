@@ -49,9 +49,9 @@ jobs:
       - name: Compile Typst resume (Docker)
         run: |
           docker run --rm \
+            -e TYPST_FONT_PATHS=/src/fonts \
             -v "${{ github.workspace }}/resume":/src \
             -v "${{ github.workspace }}/out":/out \
-            -v "${{ github.workspace }}/resume/font":/usr/share/fonts \
             ghcr.io/typst/typst:latest \
             compile /src/resume.typ /out/SamuelPotter.pdf
 
