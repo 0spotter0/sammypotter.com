@@ -3,7 +3,11 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
+
   workflow_dispatch:
+
+  repository_dispatch:
+    types: [upstream-push]
 
 jobs:
   build-and-deploy:
@@ -13,6 +17,14 @@ jobs:
       contents: read
 
     steps:
+      - name: Print trigger info
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Event type: ${{ github.event.action }}"
+          echo "Payload repo: ${{ github.event.client_payload.repository || 'N/A' }}"
+          echo "Payload ref: ${{ github.event.client_payload.ref || 'N/A' }}"
+          echo "Payload sha: ${{ github.event.client_payload.sha || 'N/A' }}"
+
       - name: Checkout
         uses: actions/checkout@v4
 
