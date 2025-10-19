@@ -47,10 +47,22 @@ jobs:
           git clone https://0spotter0:${PAT}@github.com/0spotter0/resume.git resume
           cd resume
 
-      - name: Compile Typst resume
+      - name: Install typst and compile
         working-directory: ./resume
         run: |
-          typst compile resume.typ
+          LATEST_URL=$(curl -s https://api.github.com/repos/typst/typst/releases/latest \
+            | jq -r '.assets[] | select(.name | test("typst-x86_64-unknown-linux-musl")) | .browser_download_url')
+
+          if [ -z "$LATEST_URL" ]; then
+            echo "Error: Latest release not found"
+            exit 1
+          fi
+
+          TMPDIR=$(mktemp -d)
+          curl -L "$LATEST_URL" -o "$TMPDIR/typst.tar.xz"
+          tar -xJf "$TMPDIR/typst.tar.xz" -C "$TMPDIR"
+
+          "$TMPDIR/typst" compile resume.typ
           mv resume.pdf ../out/SamuelPotter.pdf
 
       - name: Setup SSH
