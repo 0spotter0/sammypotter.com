@@ -47,13 +47,6 @@ jobs:
           git clone https://0spotter0:${PAT}@github.com/0spotter0/resume.git resume
           cd resume
 
-      - name: Install Typst
-        run: |
-          curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
-          tar -xf typst.tar.xz
-          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/typst
-          typst --version
-
       - name: Compile Typst resume
         working-directory: ./resume
         run: |
