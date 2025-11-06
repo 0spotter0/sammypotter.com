@@ -21,11 +21,13 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/typography": "^0.5.12",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
+    "js-yaml": "^4.1.0",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.6.14",
