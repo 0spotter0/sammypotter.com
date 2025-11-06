@@ -25,6 +25,9 @@ jobs:
           echo "Payload ref: ${{ github.event.client_payload.ref || 'N/A' }}"
           echo "Payload sha: ${{ github.event.client_payload.sha || 'N/A' }}"
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Clone or update private resume repo
         env:
           PAT: ${{ secrets.RESUME_REPO_PAT }}
@@ -53,9 +56,6 @@ jobs:
       - name: Copy resume data file to site dir
         run: |
           cp resume/data.yaml ./resume-data.yaml
-
-      - name: Checkout
-        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
