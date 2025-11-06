@@ -25,11 +25,21 @@ jobs:
           echo "Payload ref: ${{ github.event.client_payload.ref || 'N/A' }}"
           echo "Payload sha: ${{ github.event.client_payload.sha || 'N/A' }}"
 
-      - name: Clone private resume repo
+      - name: Clone or update private resume repo
         env:
           PAT: ${{ secrets.RESUME_REPO_PAT }}
         run: |
-          git clone https://0spotter0:${PAT}@github.com/0spotter0/resume.git resume
+          if [ -d "resume/.git" ]; then
+            echo "Updating existing resume repo"
+            cd resume
+            git fetch origin
+            git reset --hard origin/main
+            cd ..
+          else
+            echo "Cloning resume repo"
+            rm -rf resume
+            git clone https://0spotter0:${PAT}@github.com/0spotter0/resume.git resume
+          fi
 
       - name: Compile Typst resume (Docker)
         run: |
