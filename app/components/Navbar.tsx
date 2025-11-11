@@ -4,8 +4,7 @@ import { SetStateAction, useEffect, useState } from 'react'
 import { IoClose, IoLogoGithub, IoMenu } from 'react-icons/io5'
 import { usePathname } from 'next/navigation'
 
-type PageName = 'resume' | 'research' | 'about'
-const availablePages = ['resume', 'research', 'about'] satisfies PageName[]
+const availablePages = ['resume', 'research', 'about']
 
 export const Navbar = () => {
   const pathname = usePathname()
