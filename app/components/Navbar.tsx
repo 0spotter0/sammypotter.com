@@ -31,6 +31,7 @@ export const Navbar = () => {
           rel='noopener noreferrer'
           target='_blank'
           className='px-10'
+          aria-label="Visit source code for this site on GitHub"
         >
           <IoLogoGithub className='text-3xl' />
         </Link>
