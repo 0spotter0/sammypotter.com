@@ -1,21 +1,15 @@
 name: Build and Deploy
-
 on:
   push:
     branches: [main]
-
   workflow_dispatch:
-
   repository_dispatch:
     types: [upstream-push]
-
 jobs:
   build-and-deploy:
     runs-on: self-hosted
-
     permissions:
       contents: read
-
     steps:
       - name: Print trigger info
         run: |
@@ -24,10 +18,8 @@ jobs:
           echo "Payload repo: ${{ github.event.client_payload.repository || 'N/A' }}"
           echo "Payload ref: ${{ github.event.client_payload.ref || 'N/A' }}"
           echo "Payload sha: ${{ github.event.client_payload.sha || 'N/A' }}"
-
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Clone or update private resume repo
         env:
           PAT: ${{ secrets.RESUME_REPO_PAT }}
@@ -43,23 +35,22 @@ jobs:
             rm -rf resume
             git clone https://0spotter0:${PAT}@github.com/0spotter0/resume.git resume
           fi
-
       - name: Copy resume data file to site dir
         run: |
           cp resume/data.yaml ./resume-data.yaml
-
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
-
+          cache: "pnpm"
       - name: Install dependencies
-        run: npm ci
-
+        run: pnpm install
       - name: Build
-        run: npm run build
-
+        run: pnpm run build
       - name: Compile Typst resume (Docker)
         run: |
           docker run --rm \
@@ -68,13 +59,11 @@ jobs:
             -v "${{ github.workspace }}/out":/out \
             ghcr.io/typst/typst:latest \
             compile /src/resume.typ /out/SamuelPotter.pdf
-
       - name: Setup SSH
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
-
       - name: Add known_hosts
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
@@ -82,7 +71,6 @@ jobs:
           ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-
       - name: Rsync deploy
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
