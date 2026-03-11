@@ -6,12 +6,13 @@ export default function About() {
   const skills: string[] = [
     'nextjs',
     'typescript',
+    'tailwind',
     'react',
     'html',
     'css',
-    'tailwind',
     'c',
-    'vim',
+    'tmux',
+    'neovim',
     'git',
     'java',
     'c#',
@@ -102,8 +103,7 @@ export default function About() {
         <p>I use vim btw</p>
         <div className='w-full pt-4 sm:pt-16'>
           <p className='pb-4 font-medium'>
-            obligatory skills tray with little unclickable bubbles with hover
-            animations:
+            skills & interests:
           </p>
           <div className='flex flex-wrap gap-2'>
             {skills.map((skill) => (
