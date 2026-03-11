@@ -16,11 +16,9 @@ export default function Resume() {
           <p>Download PDF</p>
         </div>
       </a>
-
       <h1 className='mb-4 w-full font-mono text-3xl font-medium'>
         {resumeData.personal.name}
       </h1>
-
       <ResumeSection title={'Education'}>
         {resumeData.education.map((edu, index) => (
           <ResumeExperienceItem
@@ -30,21 +28,26 @@ export default function Resume() {
             location={edu.location}
             date={edu.date}
           >
-            {edu.awards?.map((award, awardIndex) => (
-              <li key={awardIndex}>{award}</li>
-            ))}
+            <li>
+              <span className='font-medium'>Relevant Coursework: </span>
+              {edu.courses}
+            </li>
+            <li>
+              <span className='font-medium'>Awarded: </span>
+              {edu.award}
+            </li>
           </ResumeExperienceItem>
         ))}
       </ResumeSection>
-
-      <ResumeSection title={'Publications'}>
-        {resumeData.publications.map((pub, index) => (
-          <div key={index} className='pl-4 font-light'>
-            <p dangerouslySetInnerHTML={{ __html: pub.citation }} />
-          </div>
-        ))}
+      <ResumeSection title={'Skills'}>
+        <ul className='ml-8 list-disc font-normal'>
+          {resumeData.skills.map((skillGroup, index) => (
+            <li key={index}>
+              <b>{skillGroup.category}:</b> {skillGroup.skills}
+            </li>
+          ))}
+        </ul>
       </ResumeSection>
-
       <ResumeSection title={'Experience'}>
         {resumeData.experience.map((exp, index) => (
           <ResumeExperienceItem
@@ -60,7 +63,6 @@ export default function Resume() {
           </ResumeExperienceItem>
         ))}
       </ResumeSection>
-
       <ResumeSection title={'Projects'}>
         {resumeData.projects.map((project, index) => (
           <ResumeExperienceItem
@@ -74,15 +76,12 @@ export default function Resume() {
           </ResumeExperienceItem>
         ))}
       </ResumeSection>
-
-      <ResumeSection title={'Technical Skills'}>
-        <ul className='ml-8 list-disc font-normal'>
-          {resumeData.skills.map((skillGroup, index) => (
-            <li key={index}>
-              <b>{skillGroup.category}:</b> {skillGroup.skills}
-            </li>
-          ))}
-        </ul>
+      <ResumeSection title={'Publications'}>
+        {resumeData.publications.map((pub, index) => (
+          <div key={index} className='pl-4 font-light'>
+            <p dangerouslySetInnerHTML={{ __html: pub.citation }} />
+          </div>
+        ))}
       </ResumeSection>
     </div>
   )
@@ -148,8 +147,8 @@ interface ResumeData {
     degree: string
     location: string
     date: string
-    courses?: string
-    awards?: string[]
+    courses: string
+    award: string
   }>
   publications: Array<{
     citation: string
