@@ -93,18 +93,24 @@ export default function About() {
             alt='flag'
             className='image-pixelated pointer-events-none select-none'
           ></Image>
-          <p className='font-medium'>Los Angeles, CA</p>
+          <p className='font-medium'>New York, NY</p>
         </div>
         <p>
-          Fourth-year computer science student at University of Rochester.
-          Primary experience in full-stack web development and realtime 3D
-          technology.
+          Software Engineer currently working remote in NYC. Primary experience
+          in full-stack development. Also interested in{' '}
+          <Link
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://www.instagram.com/sammy.exports/'
+            className='underline'
+          >
+            3D rendering
+          </Link>
+          , design, and esp32 tinkering.
         </p>
-        <p>I use vim btw</p>
+        <p>big into vim motions</p>
         <div className='w-full pt-4 sm:pt-16'>
-          <p className='pb-4 font-medium'>
-            skills & interests:
-          </p>
+          <p className='pb-4 font-medium'>skills & interests:</p>
           <div className='flex flex-wrap gap-2'>
             {skills.map((skill) => (
               <SkillPill key={skill} name={skill} />
