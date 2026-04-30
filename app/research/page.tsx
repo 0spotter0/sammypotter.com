@@ -4,6 +4,15 @@ import { IoLinkOutline } from 'react-icons/io5'
 export default function Research() {
   const articles: Article[] = [
     {
+      title: 'Design and Evaluation of a Culturally Adapted Multimodal Virtual Agent for PTSD Screening',
+      authors:
+        'Cengiz Ozel, Waleed Nadeem, Samuel Potter, Yahya Bokhari, Bdour Alwuqaysi, Wejdan Alotaibi, Rahaf Fahad Alnufaie, Sabri Boughorbel, Abdulrhman Aljouie, Rakan Altasan, Ehsan Hoque',
+      conference: '2026 ACM International Conference on Intelligent Virtual Agents (Submitted)',
+      doi: 'doi: 10.48550/arXiv.2604.17871',
+      link: 'https://arxiv.org/abs/2604.17871',
+      date: '20 April 2026',
+    },
+    {
       title: 'Hi5: 2D Hand Pose Estimation with Zero Human Annotation',
       authors:
         'Masum Hasan, Cengiz Ozel, Nina Long, Alexander Martin, Sammy Potter, Tariq Adnan, Sangwu Lee, Amir Zadeh, Ehsan Hoque',
